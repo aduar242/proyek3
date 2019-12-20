@@ -4,9 +4,9 @@
             <li class="app-sidebar__heading">Dashboards</li>
             <li>
                 @if(URL::current() == URL::route('home'))
-                <a href="{{('home')}}" class="mm-active">
+                <a href="{{ route('home')}}" class="mm-active">
                     @else
-                    <a href="{{('home')}}">
+                    <a href="{{ route('home')}}">
                         @endif
                     <i class="metismenu-icon pe-7s-rocket"></i>
                     Analisa
@@ -15,9 +15,9 @@
             <li class="app-sidebar__heading">List data</li>
             <li>
                 @if(URL::current() == URL::route('client'))
-                <a href="{{('client')}}" class="mm-active">
+                <a href="{{ route('client')}}" class="mm-active">
                     @else
-                    <a href="{{('client')}}">
+                    <a href="{{ route('client')}}">
                         @endif
                     <i class="metismenu-icon pe-7s-display2"></i>
                     Client

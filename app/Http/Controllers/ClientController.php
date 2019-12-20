@@ -70,7 +70,8 @@ class ClientController extends Controller
      */
     public function edit($id)
     {
-        //
+        $clients = Client::findOrFail($id);
+        return view('clients.edit', compact('clients'));
     }
 
     /**
@@ -82,7 +83,36 @@ class ClientController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'nama' => 'required',
+            'deskripsi' => 'required',
+            'desa' => 'required',
+            'kecamatan' => 'required',
+            'no_rumah' => 'required',
+            'paket' => 'required',
+            'masa_aktif' => 'required',
+            'masa_kadaluwarsa' => 'required'
+        ]);
+        try {
+            $client = Client::findOrFail($id);
+            $client->update([
+                'nama' => $request->nama,
+                'deskripsi' => $request->deskripsi,
+                'desa' => $request->desa,
+                'kecamatan' => $request->kecamatan,
+                'no_rumah' => $request->no_rumah,
+                'paket' => $request->paket,
+                'masa_aktif' => $request->masa_aktif,
+                'masa_kadaluwarsa' => $request->masa_kadaluwarsa
+            ]);
+            return redirect(route('client'))
+            ->with(['success' => '<strong>' . $client->nama . '</strong> Diperbaharui']);
+        }
+        catch (\Exception $e) {
+            return redirect()->back()
+                ->with(['error' => $e->getMessage()]);
+        }
+        return redirect(route('client'));        
     }
 
     /**
@@ -95,6 +125,6 @@ class ClientController extends Controller
     {
         $clients = Client::findOrFail($id);
         $clients->delete();
-        redirect()->back()->with(['success' => '<strong>' . $clients->name . '</strong> Telah Dihapus!']);
+        return redirect()->route('client');
     }
 }

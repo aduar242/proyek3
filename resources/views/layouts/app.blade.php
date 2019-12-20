@@ -14,7 +14,7 @@
     <meta name="msapplication-tap-highlight" content="no">
 <link href="{{ asset('dashboard/main.css')}}" rel="stylesheet"></head>
 <body>
-    @include('layouts.modal.hapus')
+@extends('layouts.modal.hapus')
     <div class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header">
 {{-- bagian header --}}
         @include('layouts.modul.header')

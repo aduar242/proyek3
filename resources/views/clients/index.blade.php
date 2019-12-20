@@ -37,30 +37,35 @@
                         <td>{{$client->masa_aktif}}</td>
                         <td>{{$client->masa_kadaluwarsa}}</td>
                         <td class="text-right">
-                            <button type="button" class="btn mr-2 mb-2 btn-primary" data-toggle="modal" data-target="#exampleModal">Hapus</button>
                             <button class="mb-1 mr-1 btn-transition btn btn-outline-primary"><i class="pe-7s-user"></i> Lihat
                             </button>
-                            <button class="mb-1 mr-1 btn-transition btn btn-outline-success"><i class="pe-7s-id"></i> Edit
+                            <a href="{{ route('client.edit', $client->id) }}">  
+                                <button class="mb-1 mr-1 btn-transition btn btn-outline-success"><i class="pe-7s-id"></i> Edit
+                                </button>
+                            </a>
+                            <button class="mb-1 mr-1 btn-transition btn btn-outline-danger" data-toggle="modal" data-target="#exampleModal"><i class="pe-7s-trash"></i> Hapus
                             </button>
                         </td>
                     </tr>
                     @section('modalHapus')
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Modal title test</h5>
+                            <h5 class="modal-title" id="exampleModalLabel">Data ini akan di hapus</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
                         <div class="modal-body">
-                            <p class="mb-0">Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled.</p>
+                            <p class="mb-0">Anda yakin ingin menghapus data ini</p>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <form action="{{ route('client.destroy',$client->id) }}" method="POST">
+                            <button type="button" class="btn btn-primary" data-dismiss="modal">Batal</button>
+                            <form action="{{ route('client.destroy', $client->id) }}" method="POST">
                                 @csrf
+                                <a href="{{ route('client.destroy', $client->id) }}">
                                 <input type="hidden" name="_method" value="DELETE">
-                                <button type="button" class="btn btn-primary">sSave changes</button>
+                                <button type="button" class="btn btn-danger">Hapus</button>
+                                </a>
                             </form>
                             
                         </div>

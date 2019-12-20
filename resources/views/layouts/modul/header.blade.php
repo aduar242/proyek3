@@ -28,7 +28,8 @@
                 </span>
             </button>
         </span>
-    </div>    <div class="app-header__content">
+    </div>
+    <div class="app-header__content">
         <div class="app-header-left">
             <div class="search-wrapper">
                 <div class="input-holder">
@@ -56,7 +57,8 @@
                         Settings
                     </a>
                 </li>
-            </ul>        </div>
+            </ul>
+        </div>
         <div class="app-header-right">
             <div class="header-btn-lg pr-0">
                 <div class="widget-content p-0">
@@ -69,9 +71,6 @@
                                 </a>
                                 <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu dropdown-menu-right">
                                     <button type="button" tabindex="0" class="dropdown-item">User Account</button>
-                                    <button type="button" tabindex="0" class="dropdown-item">Settings</button>
-                                    <h6 tabindex="-1" class="dropdown-header">Header</h6>
-                                    <button type="button" tabindex="0" class="dropdown-item">Actions</button>
                                     @guest
                                     <div tabindex="-1" class="dropdown-divider"></div>
                                     <button type="button" tabindex="0" class="dropdown-item">
@@ -111,6 +110,7 @@
                         </div>
                     </div>
                 </div>
-            </div>        </div>
+            </div>
+        </div>
     </div>
 </div> 
