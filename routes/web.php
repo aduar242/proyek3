@@ -17,13 +17,20 @@ Route::get('/', function () {
 
 
 Auth::routes();
-Route::group(['middleware' => 'auth'], function() {
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::group(['middleware' => 'auth'], function() {
+
+// START route bagian client
 Route::get('/client', 'ClientController@index')->name('client');
 Route::get('/client/destroy/{id}', 'ClientController@destroy')->name('client.destroy');
 Route::post('/client/store', 'ClientController@store')->name('client.store');
 Route::get('/client/edit/{id}', 'ClientController@edit')->name('client.edit');
 Route::post('/client/edit/{id}', 'ClientController@update')->name('client.update');
+// END route bagian client
 
-
+// START route bagian paket
+Route::get('/paket', 'PaketController@index')->name('paket');
+Route::post('/paket/store', 'PaketController@store')->name('paket.store');
+// END route bagian paket
 });

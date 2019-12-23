@@ -14,6 +14,16 @@
             </li>
             <li class="app-sidebar__heading">List data</li>
             <li>
+                @if(URL::current() == URL::route('paket'))
+                <a href="{{ route('paket')}}" class="mm-active">
+                    @else
+                    <a href="{{ route('paket')}}">
+                        @endif
+                    <i class="metismenu-icon pe-7s-display2"></i>
+                    Paket
+                </a>
+            </li>
+            <li>
                 @if(URL::current() == URL::route('client'))
                 <a href="{{ route('client')}}" class="mm-active">
                     @else

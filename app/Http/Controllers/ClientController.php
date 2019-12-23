@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Paket;
 use App\Client;
 use Illuminate\Http\Request;
 
@@ -14,8 +15,9 @@ class ClientController extends Controller
      */
     public function index()
     {
-        $clients = Client::all();
-        return view('clients.index', compact('clients'));
+        $clients = Client::with('paket')->orderBy('created_at', 'DESC')->paginate(10);
+        $pakets = Paket::orderBy('nama', 'ASC')->get();
+        return view('clients.index', compact('clients','pakets')); 
     }
 
     /**
@@ -39,16 +41,29 @@ class ClientController extends Controller
         $this->validate($request, [
             'nama' => 'required',
             'deskripsi' => 'required',
+            'id_paket' => 'required|exits:pakets,id',
             'desa' => 'required',
             'kecamatan' => 'required',
             'no_rumah' => 'required',
-            'paket' => 'required',
             'masa_aktif' => 'required',
             'masa_kadaluwarsa' => 'required',
         ]);
-
-        Client::create($request->all());
-        return redirect()->route('client');
+        
+        try {
+            $client = Client::create([
+                'nama' => $request->nama,
+                'deskripsi' => $request->deskripsi,
+                'id_paket' => $request->id_paket,
+                'desa' => $request->desa,
+                'kecamatan' => $request->kecamatan,
+                'no_rumah' => $request->no_rumah,
+                'masa_aktif' => $request->masa_aktif,
+                'masa_kadaluwarsa' => $request->masa_kadaluwarsa,
+            ]);
+            return redirect(route('client'))->with(['success' => '<string>' , $client->nama . '</strong> Ditambahkan']);
+        } catch (\Exception $e){
+            return redirect()->back()->with(['error' => $e->getMessage()]);
+        }
     }
 
     /**
@@ -86,10 +101,10 @@ class ClientController extends Controller
         $this->validate($request, [
             'nama' => 'required',
             'deskripsi' => 'required',
+            'id_paket' => 'required|exists:pakets,id',
             'desa' => 'required',
             'kecamatan' => 'required',
             'no_rumah' => 'required',
-            'paket' => 'required',
             'masa_aktif' => 'required',
             'masa_kadaluwarsa' => 'required'
         ]);
@@ -98,10 +113,10 @@ class ClientController extends Controller
             $client->update([
                 'nama' => $request->nama,
                 'deskripsi' => $request->deskripsi,
+                'id_paket' => $request->id_paket,
                 'desa' => $request->desa,
                 'kecamatan' => $request->kecamatan,
                 'no_rumah' => $request->no_rumah,
-                'paket' => $request->paket,
                 'masa_aktif' => $request->masa_aktif,
                 'masa_kadaluwarsa' => $request->masa_kadaluwarsa
             ]);

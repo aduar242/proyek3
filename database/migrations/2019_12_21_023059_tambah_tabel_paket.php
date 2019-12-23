@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateClientsTable extends Migration
+class TambahTabelPaket extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,10 @@ class CreateClientsTable extends Migration
      */
     public function up()
     {
-        Schema::create('clients', function (Blueprint $table) {
+        Schema::create('pakets', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nama');
-            $table->text('deskripsi');
-            $table->integer('id_paket');
-            $table->string('desa');
-            $table->string('kecamatan');
-            $table->string('no_rumah');
-            $table->string('masa_aktif');
-            $table->string('masa_kadaluwarsa');
+            $table->integer('harga');
             $table->timestamps();
         });
     }
@@ -34,6 +28,6 @@ class CreateClientsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('clients');
+        //
     }
 }

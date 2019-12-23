@@ -32,8 +32,8 @@
                         @foreach ($clients as $client)
                     <tr>
                         <th scope="row">{{$no++}}</th>
-                        <td>{{$client->nama}}</td>
-                        <td>{{$client->paket}}</td>
+                        <td>{{ ucfirst($client->nama)}}</td>
+                        <td>{{$client->id_paket}}</td>
                         <td>{{$client->masa_aktif}}</td>
                         <td>{{$client->masa_kadaluwarsa}}</td>
                         <td class="text-right">
@@ -93,14 +93,17 @@
                     <div class="card-body">
                     <form class="" action="{{ route('client.store')}}" method="POST">
                         {{ csrf_field() }}
-                            <div class="position-relative form-group"><label for="exampleNama" class="">Nama</label><input name="nama" id="exampleNama" placeholder="with a placeholder" type="string" class="form-control"></div>
-                            <div class="position-relative form-group"><label for="exampleText" class="">Deskripsi</label><textarea name="deskripsi" id="exampleText" class="form-control"></textarea></div>
-                            <div class="position-relative form-group"><label for="examplePaket" class="">Desa</label><input name="desa" id="exampleDesa" placeholder="with a placeholder" type="string" class="form-control"></div>
-                            <div class="position-relative form-group"><label for="exampleKecamatan" class="">Kecamatan</label><input name="kecamatan" id="exampleKecamatan" placeholder="with a placeholder" type="string" class="form-control"></div>
-                            <div class="position-relative form-group"><label for="exampleNoRumah" class="">No rumah</label><input name="no_rumah" id="exampleNo_Rumah" placeholder="with a placeholder" type="string" class="form-control"></div>
-                            <div class="position-relative form-group"><label for="examplePaket" class="">Paket</label><input name="paket" id="examplePaket" placeholder="with a placeholder" type="string" class="form-control"></div>
-                            <div class="position-relative form-group"><label for="exampleMasaAktif" class="">Masa aktif</label><input name="masa_aktif" id="exampleMasaAktif" placeholder="with a placeholder" type="date" class="form-control"></div>
-                            <div class="position-relative form-group"><label for="exampleMasaKadaluarsa" class="">Masa kadaluwarsa</label><input name="masa_kadaluwarsa" id="exampleMasaKadaluarsa" placeholder="with a placeholder" type="date" class="form-control"></div>
+                            <div class="position-relative form-group"><label for="exampleNama" class="">Nama</label><input name="nama" id="nama" placeholder="with a placeholder" type="string" class="form-control {{ $errors->has('nama') ? 'is-invalid':'' }}"></div>
+                            <div class="position-relative form-group"><label for="exampleSelect" class="">Paket</label><select name="id_paket" id="id_paket" class="form-control" {{ $errors->has('id_paket') ? 'is-invalid':'' }}>
+                                <option value="">Pilih :</option>
+                                @foreach ($pakets as $paket)
+                                    <option value="{{$paket->id}}">{{ ucfirst($paket->nama) }}</option>
+                                @endforeach
+                            </select></div>
+                            <div class="position-relative form-group"><label for="exampleKecamatan" class="">Kecamatan</label><input name="kecamatan" id="exampleKecamatan" placeholder="with a placeholder" type="string" class="form-control {{ $errors->has('kecamatan') ? 'is-invalid':'' }}"></div>
+                            <div class="position-relative form-group"><label for="exampleNoRumah" class="">No rumah</label><input name="no_rumah" id="exampleNo_Rumah" placeholder="with a placeholder" type="string" class="form-control {{ $errors->has('no_rumah') ? 'is-invalid':'' }}"></div>
+                            <div class="position-relative form-group"><label for="exampleMasaAktif" class="">Masa aktif</label><input name="masa_aktif" id="exampleMasaAktif" placeholder="with a placeholder" type="date" class="form-control {{ $errors->has('masa_aktif') ? 'is-invalid':'' }}"></div>
+                            <div class="position-relative form-group"><label for="exampleMasaKadaluarsa" class="">Masa kadaluwarsa</label><input name="masa_kadaluwarsa" id="exampleMasaKadaluarsa" placeholder="with a placeholder" type="date" class="form-control {{ $errors->has('masa_kadaluwarsa') ? 'is-invalid':'' }}"></div>
                             <button class="mt-1 btn btn-primary">Simpan</button>
                         </form>
                     </div>
