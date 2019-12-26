@@ -15,8 +15,8 @@ class ClientController extends Controller
      */
     public function index()
     {
-        $clients = Client::with('paket')->orderBy('created_at', 'DESC')->paginate(10);
-        $pakets = Paket::orderBy('nama', 'ASC')->get();
+        $clients = Client::with('paket')->orderBy('created_at', 'DESC')->paginate(3);
+        $pakets = Paket::orderBy('nama', 'DESC')->get();
         return view('clients.index', compact('clients','pakets')); 
     }
 
@@ -41,7 +41,7 @@ class ClientController extends Controller
         $this->validate($request, [
             'nama' => 'required',
             'deskripsi' => 'required',
-            'id_paket' => 'required|exits:pakets,id',
+            'id_paket' => 'required',
             'desa' => 'required',
             'kecamatan' => 'required',
             'no_rumah' => 'required',
@@ -50,7 +50,7 @@ class ClientController extends Controller
         ]);
         
         try {
-            $client = Client::create([
+            $clients = Client::create([
                 'nama' => $request->nama,
                 'deskripsi' => $request->deskripsi,
                 'id_paket' => $request->id_paket,
@@ -58,9 +58,9 @@ class ClientController extends Controller
                 'kecamatan' => $request->kecamatan,
                 'no_rumah' => $request->no_rumah,
                 'masa_aktif' => $request->masa_aktif,
-                'masa_kadaluwarsa' => $request->masa_kadaluwarsa,
+                'masa_kadaluwarsa' => $request->masa_kadaluwarsa
             ]);
-            return redirect(route('client'))->with(['success' => '<string>' , $client->nama . '</strong> Ditambahkan']);
+            return redirect(route('client'))->with(['success' => '<string>' , $clients->nama . '</strong> Ditambahkan']);
         } catch (\Exception $e){
             return redirect()->back()->with(['error' => $e->getMessage()]);
         }
@@ -86,7 +86,8 @@ class ClientController extends Controller
     public function edit($id)
     {
         $clients = Client::findOrFail($id);
-        return view('clients.edit', compact('clients'));
+        $pakets = Paket::orderBy('nama', 'ASC')->get();
+        return view('clients.edit', compact('clients','pakets'));
     }
 
     /**
@@ -140,6 +141,6 @@ class ClientController extends Controller
     {
         $clients = Client::findOrFail($id);
         $clients->delete();
-        return redirect()->route('client');
+        return redirect()->back()->with(['success' => '<strong>' . $clients->name . '</strong> Telah Dihapus!']);
     }
 }

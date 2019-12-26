@@ -14,7 +14,7 @@ class PaketController extends Controller
      */
     public function index()
     {
-        $pakets = Paket::orderBy('created_at', 'DESC')->paginate(10);
+        $pakets = Paket::orderBy('nama', 'ASC')->paginate(10);
         return view('pakets.index', compact('pakets'));
     }
 
@@ -37,18 +37,19 @@ class PaketController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'nama' => 'required',
-            'harga' => 'required'
+            'id' => 'required|integer',
+            'nama' => 'required|string|max:50',
+            'harga' => 'required|integer'
         ]);
 
         try {
-            $pakets = Paket::firsOrCreate([
-                'nama' => $request->nama
-            ], [
-                'harga' => $request->harga
+            $pakets = Paket::create([
+                'id' => $request->id,
+                'nama' => $request->nama,
+                'harga' => $request->harga,                
             ]);
-            return redirect()->back()->with(['success' => 'Paket: ' . $pakets->nama . 'Ditambahkan']);
-        } catch (\Exception $e) {
+            return redirect(route('paket'))->with(['success' => '<string>' , $pakets->nama . '</strong> Ditambahkan']);
+        } catch (\Exception $e){
             return redirect()->back()->with(['error' => $e->getMessage()]);
         }
     }
@@ -91,7 +92,7 @@ class PaketController extends Controller
         ]);
 
         try {
-            $pakets = Pakets::findOrFail($id);
+            $pakets = Paket::findOrFail($id);
             $pakets->update([
                 'nama' => $request->nama,
                 'harga' => $request->harga

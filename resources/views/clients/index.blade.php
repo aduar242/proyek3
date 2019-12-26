@@ -31,9 +31,9 @@
                         @php $no = 1; @endphp
                         @foreach ($clients as $client)
                     <tr>
-                        <th scope="row">{{$no++}}</th>
+                        <th scope="client">{{$no++}}</th>
                         <td>{{ ucfirst($client->nama)}}</td>
-                        <td>{{$client->id_paket}}</td>
+                        <td>{{$client->paket}}</td>
                         <td>{{$client->masa_aktif}}</td>
                         <td>{{$client->masa_kadaluwarsa}}</td>
                         <td class="text-right">
@@ -56,11 +56,12 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <p class="mb-0">Anda yakin ingin menghapus data ini</p>
+                            <p class="mb-0">Anda yakin ingin menghapus data ini {{$client->id}}</p>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-primary" data-dismiss="modal">Batal</button>
                             <form action="{{ route('client.destroy', $client->id) }}" method="POST">
+                                {{ method_field('delete') }}
                                 @csrf
                                 <a href="{{ route('client.destroy', $client->id) }}">
                                 <input type="hidden" name="_method" value="DELETE">
@@ -94,12 +95,14 @@
                     <form class="" action="{{ route('client.store')}}" method="POST">
                         {{ csrf_field() }}
                             <div class="position-relative form-group"><label for="exampleNama" class="">Nama</label><input name="nama" id="nama" placeholder="with a placeholder" type="string" class="form-control {{ $errors->has('nama') ? 'is-invalid':'' }}"></div>
+                            <div class="position-relative form-group"><label for="exampledeskripsi" class="">Deskripsi</label><input name="deskripsi" id="nama" placeholder="with a placeholder" type="string" class="form-control {{ $errors->has('deskripsi') ? 'is-invalid':'' }}"></div>
                             <div class="position-relative form-group"><label for="exampleSelect" class="">Paket</label><select name="id_paket" id="id_paket" class="form-control" {{ $errors->has('id_paket') ? 'is-invalid':'' }}>
                                 <option value="">Pilih :</option>
                                 @foreach ($pakets as $paket)
                                     <option value="{{$paket->id}}">{{ ucfirst($paket->nama) }}</option>
                                 @endforeach
                             </select></div>
+                            <div class="position-relative form-group"><label for="exampleDesa" class="">Desa</label><input name="desa" id="exampleDesa" placeholder="with a placeholder" type="string" class="form-control {{ $errors->has('desa') ? 'is-invalid':'' }}"></div>
                             <div class="position-relative form-group"><label for="exampleKecamatan" class="">Kecamatan</label><input name="kecamatan" id="exampleKecamatan" placeholder="with a placeholder" type="string" class="form-control {{ $errors->has('kecamatan') ? 'is-invalid':'' }}"></div>
                             <div class="position-relative form-group"><label for="exampleNoRumah" class="">No rumah</label><input name="no_rumah" id="exampleNo_Rumah" placeholder="with a placeholder" type="string" class="form-control {{ $errors->has('no_rumah') ? 'is-invalid':'' }}"></div>
                             <div class="position-relative form-group"><label for="exampleMasaAktif" class="">Masa aktif</label><input name="masa_aktif" id="exampleMasaAktif" placeholder="with a placeholder" type="date" class="form-control {{ $errors->has('masa_aktif') ? 'is-invalid':'' }}"></div>

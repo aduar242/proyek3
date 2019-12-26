@@ -30,6 +30,8 @@ Route::post('/client/edit/{id}', 'ClientController@update')->name('client.update
 // END route bagian client
 
 // START route bagian paket
+Route::resource('/paket', 'PaketController');
+Route::get('/paket/destroy/{id}', 'PaketController@destroy')->name('paket.destroy');
 Route::get('/paket', 'PaketController@index')->name('paket');
 Route::post('/paket/store', 'PaketController@store')->name('paket.store');
 // END route bagian paket
