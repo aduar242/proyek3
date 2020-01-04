@@ -33,7 +33,7 @@
                     <tr>
                         <th scope="client">{{$no++}}</th>
                         <td>{{ ucfirst($client->nama)}}</td>
-                        <td>{{$client->paket}}</td>
+                        <td>{{$client->paket['nama']}}</td>
                         <td>{{$client->masa_aktif}}</td>
                         <td>{{$client->masa_kadaluwarsa}}</td>
                         <td class="text-right">

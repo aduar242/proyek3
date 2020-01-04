@@ -41,7 +41,7 @@ class ClientController extends Controller
         $this->validate($request, [
             'nama' => 'required',
             'deskripsi' => 'required',
-            'id_paket' => 'required',
+            'id_paket' => 'required|exists:pakets,id',
             'desa' => 'required',
             'kecamatan' => 'required',
             'no_rumah' => 'required',

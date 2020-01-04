@@ -9,6 +9,6 @@ class Client extends Model
     protected $guarded = [];
 
     public function paket(){
-        return $this->belongsTo(Paket::class);
+        return $this->belongsTo('App\Paket','id_paket');
     }
 }

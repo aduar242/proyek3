@@ -22,6 +22,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::group(['middleware' => 'auth'], function() {
 
 // START route bagian client
+Route::resource('/client', 'ClientController');
 Route::get('/client', 'ClientController@index')->name('client');
 Route::get('/client/destroy/{id}', 'ClientController@destroy')->name('client.destroy');
 Route::post('/client/store', 'ClientController@store')->name('client.store');
@@ -31,8 +32,8 @@ Route::post('/client/edit/{id}', 'ClientController@update')->name('client.update
 
 // START route bagian paket
 Route::resource('/paket', 'PaketController');
-Route::get('/paket/destroy/{id}', 'PaketController@destroy')->name('paket.destroy');
 Route::get('/paket', 'PaketController@index')->name('paket');
+Route::get('/paket/destroy/{id}', 'PaketController@destroy')->name('paket.destroy');
 Route::post('/paket/store', 'PaketController@store')->name('paket.store');
 // END route bagian paket
 });

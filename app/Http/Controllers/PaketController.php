@@ -37,14 +37,12 @@ class PaketController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'id' => 'required|integer',
             'nama' => 'required|string|max:50',
-            'harga' => 'required|integer'
+            'harga' => 'required|numeric'
         ]);
 
         try {
-            $pakets = Paket::create([
-                'id' => $request->id,
+            $pakets = Paket::create([                
                 'nama' => $request->nama,
                 'harga' => $request->harga,                
             ]);

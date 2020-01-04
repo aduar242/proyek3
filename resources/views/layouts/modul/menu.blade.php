@@ -8,11 +8,17 @@
                     @else
                     <a href="{{ route('home')}}">
                         @endif
-                    <i class="metismenu-icon pe-7s-rocket"></i>
+                    <i class="metismenu-icon pe-7s-display1"></i>
                     Analisa
                 </a>
             </li>
-            <li class="app-sidebar__heading">List data</li>
+            <li>
+                <a href="#">
+                    <i class="metismenu-icon pe-7s-display2"></i>
+                    Laporan Pelanggan
+                </a>
+            </li>
+            <li class="app-sidebar__heading">Manajemen Data</li>
             <li>
                 @if(URL::current() == URL::route('paket'))
                 <a href="{{ route('paket')}}" class="mm-active">
@@ -20,7 +26,7 @@
                     <a href="{{ route('paket')}}">
                         @endif
                     <i class="metismenu-icon pe-7s-display2"></i>
-                    Paket
+                    Data Paket
                 </a>
             </li>
             <li>
@@ -30,7 +36,27 @@
                     <a href="{{ route('client')}}">
                         @endif
                     <i class="metismenu-icon pe-7s-display2"></i>
-                    Client
+                    Data Client
+                </a>
+            </li>
+            <li class="app-sidebar__heading">Manajemen User</li>
+            <li>
+                <a href="#">
+                    <i class="metismenu-icon pe-7s-display2"></i>
+                    Data User
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="metismenu-icon pe-7s-display2"></i>
+                    Data Role
+                </a>
+            </li>
+            <li class="app-sidebar__heading">Manajemen Mapping</li>
+            <li>
+                <a href="#">
+                    <i class="metismenu-icon pe-7s-map-2"></i>
+                    Data mapping
                 </a>
             </li>
         </ul>
