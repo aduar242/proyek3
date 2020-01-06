@@ -19,7 +19,7 @@ Route::get('/', function () {
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::group(['middleware' => 'auth'], function() {
+Route::group(['middleware' => ['auth']], function() {
 
 // START route bagian client
 Route::resource('/client', 'ClientController');
@@ -36,4 +36,15 @@ Route::get('/paket', 'PaketController@index')->name('paket');
 Route::get('/paket/destroy/{id}', 'PaketController@destroy')->name('paket.destroy');
 Route::post('/paket/store', 'PaketController@store')->name('paket.store');
 // END route bagian paket
+
+// START route bagian user
+Route::resource('/user', 'UserController');
+Route::get('/user', 'UserController@index')->name('user');
+// END route bagian user
+
+// START route bagian role
+Route::resource('/role', 'RoleController');
+Route::get('/role', 'RoleController@index')->name('role');
+// END route bagian role
+
 });

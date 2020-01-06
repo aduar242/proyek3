@@ -18,6 +18,7 @@
                     Laporan Pelanggan
                 </a>
             </li>
+            @role('Admin')
             <li class="app-sidebar__heading">Manajemen Data</li>
             <li>
                 @if(URL::current() == URL::route('paket'))
@@ -41,13 +42,21 @@
             </li>
             <li class="app-sidebar__heading">Manajemen User</li>
             <li>
-                <a href="#">
+                @if(URL::current() == URL::route('user'))
+                <a href="{{ route('user')}}" class="mm-active">
+                    @else
+                    <a href="{{ route('user')}}">
+                        @endif
                     <i class="metismenu-icon pe-7s-display2"></i>
                     Data User
                 </a>
             </li>
             <li>
-                <a href="#">
+                @if(URL::current() == URL::route('role'))
+                <a href="{{ route('role')}}" class="mm-active">
+                    @else
+                    <a href="{{ route('role')}}">
+                        @endif
                     <i class="metismenu-icon pe-7s-display2"></i>
                     Data Role
                 </a>
@@ -59,6 +68,7 @@
                     Data mapping
                 </a>
             </li>
+            @endrole
         </ul>
     </div>
 </div>
