@@ -47,30 +47,16 @@
                                 <button class="mb-1 mr-1 btn-transition btn btn-outline-success"><i class="pe-7s-id"></i> Edit
                                 </button>
                             </a>
+                            {!! Form::open(['method' => 'DELETE','route' => ['user.destroy', $user->id],'style'=>'display:inline']) !!}
+                            {!! Form::submit('Delete', ['class' => 'mb-1 mr-1 btn-transition btn btn-outline-danger']) !!}
+                            {!! Form::close() !!}
                             <button class="mb-1 mr-1 btn-transition btn btn-outline-danger" data-toggle="modal" data-target="#exampleModal"><i class="pe-7s-trash"></i> Hapus
                             </button>
+                            @section('modalHapus')
+                                {{$user->id}}
+                            @endsection
                         </td>
                     </tr>
-                    @section('modalHapus')
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Data ini akan di hapus</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <p class="mb-0">Anda yakin ingin menghapus data ini {{$user->id}}</p>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-primary" data-dismiss="modal">Batal</button>
-                            {!! Form::open(['method' => 'DELETE','route' => ['user.destroy', $user->id],'style'=>'display:inline']) !!}
-                            {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
-                            {!! Form::close() !!}
-                            
-                        </div>
-                    </div>
-                    @endsection
                         @endforeach
                     </tbody>
                 </table>

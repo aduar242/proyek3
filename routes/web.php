@@ -48,3 +48,15 @@ Route::get('/role', 'RoleController@index')->name('role');
 // END route bagian role
 
 });
+
+Route::get('/map', function (){
+    $config['center'] = 'Air Canada Center, Toronto';
+    $config['zoom'] = '14';
+    $config['map_height'] = '500px';
+    $config['scrollwheel'] = false;
+    GMaps::initialize($config);
+    $map = GMaps::create_map();
+
+    return view('map')-with('map', $map);
+
+});
