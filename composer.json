@@ -8,9 +8,10 @@
     ],
     "license": "MIT",
     "require": {
+        "farhanwazir/laravelgooglemaps": "^2.3",
         "php": "^7.1.3",
         "fideloper/proxy": "^4.0",
-        "laravel/framework": "^6.0",
+        "laravel/framework": "6.*",
         "laravel/tinker": "^1.0",
         "laravelcollective/html": "^6.0",
         "spatie/laravel-permission": "^3.4"
