@@ -49,6 +49,11 @@ Route::get('/role', 'RoleController@index')->name('role');
 
 });
 
+//STart route laporan
+Route::resource('/lap', 'LaporanController');
+Route::get('/lap','LaporanController@index')->name('lap');
+//end route
+
 Route::get('/map', function (){
     $config['center'] = 'Air Canada Center, Toronto';
     $config['zoom'] = '14';

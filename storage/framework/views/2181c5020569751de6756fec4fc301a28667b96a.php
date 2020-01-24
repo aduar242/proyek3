@@ -12,12 +12,6 @@
                     Analisa
                 </a>
             </li>
-            <li>
-                <a href="#">
-                    <i class="metismenu-icon pe-7s-display2"></i>
-                    Laporan Pelanggan
-                </a>
-            </li>
             <?php if(auth()->check() && auth()->user()->hasRole('Admin')): ?>
             <li class="app-sidebar__heading">Manajemen Data</li>
             <li>
@@ -66,6 +60,32 @@
                 <a href="#">
                     <i class="metismenu-icon pe-7s-map-2"></i>
                     Data mapping
+                </a>
+            </li>
+            <li class="app-sidebar__heading">Laporan</li>
+            <li>
+                <?php if(URL::current() == URL::route('lap')): ?>
+                <a href="<?php echo e(route('lap')); ?>" class="mm-active">
+                    <?php else: ?>
+                        <a href="<?php echo e(route('lap')); ?>">
+                        <?php endif; ?>
+                    <i class="metismenu-icon pe-7s-display2">
+                    </i>
+                    Laporan Pelanggan
+                </a>
+            </li>
+            <?php endif; ?>
+            <?php if(auth()->check() && auth()->user()->hasRole('Kasir')): ?>
+            <li class="app-sidebar__heading">Pelayanan</li>
+            <li>
+                <?php if(URL::current() == URL::route('lap')): ?>
+                <a href="<?php echo e(route('lap')); ?>" class="mm-active">
+                    <?php else: ?>
+                        <a href="<?php echo e(route('lap')); ?>">
+                        <?php endif; ?>
+                    <i class="metismenu-icon pe-7s-display2">
+                    </i>
+                    Pelayanan
                 </a>
             </li>
             <?php endif; ?>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Paket;
 use App\Client;
 use Illuminate\Http\Request;
+use DB;
 
 class ClientController extends Controller
 {
@@ -129,6 +130,25 @@ class ClientController extends Controller
                 ->with(['error' => $e->getMessage()]);
         }
         return redirect(route('client'));        
+    }
+
+    public function extend(Request $request){
+
+        $data = DB::table('client')->where('id',$request->id)->get();
+
+        DB::table('history_p')->insert([
+            'idh'=>$data->id,
+            'id_paket'=>$data->id_paket,
+            'masa_aktif'=>$data->masa_aktif,
+            'masa_kadaluwarsa'=>$data->masa_kadaluwarsa
+        ]);
+
+        DB::table('client')->where('id',$request->id)->update([
+            'id_paket'=>$request->id_paket,
+            'masa_aktif'=>$request->masa_aktif,
+            'masa_kadaluwarsa'=>$request->masa_kadaluwarsa,
+        ]);
+
     }
 
     /**

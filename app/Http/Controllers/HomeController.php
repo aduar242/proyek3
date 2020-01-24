@@ -24,7 +24,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $client = Client::count();
+        $client = Client::get();
         return view('home', compact('client'));
     }
 }

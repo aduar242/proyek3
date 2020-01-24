@@ -17,6 +17,7 @@ return array(
     'App\\Http\\Controllers\\ClientController' => $baseDir . '/app/Http/Controllers/ClientController.php',
     'App\\Http\\Controllers\\Controller' => $baseDir . '/app/Http/Controllers/Controller.php',
     'App\\Http\\Controllers\\HomeController' => $baseDir . '/app/Http/Controllers/HomeController.php',
+    'App\\Http\\Controllers\\LaporanController' => $baseDir . '/app/Http/Controllers/LaporanController.php',
     'App\\Http\\Controllers\\PaketController' => $baseDir . '/app/Http/Controllers/PaketController.php',
     'App\\Http\\Controllers\\RoleController' => $baseDir . '/app/Http/Controllers/RoleController.php',
     'App\\Http\\Controllers\\UserController' => $baseDir . '/app/Http/Controllers/UserController.php',

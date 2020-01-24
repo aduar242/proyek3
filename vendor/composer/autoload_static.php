@@ -410,6 +410,7 @@ class ComposerStaticInit8344b90c4b19ddf144707db5d57e57ee
         'App\\Http\\Controllers\\ClientController' => __DIR__ . '/../..' . '/app/Http/Controllers/ClientController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Controllers\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/HomeController.php',
+        'App\\Http\\Controllers\\LaporanController' => __DIR__ . '/../..' . '/app/Http/Controllers/LaporanController.php',
         'App\\Http\\Controllers\\PaketController' => __DIR__ . '/../..' . '/app/Http/Controllers/PaketController.php',
         'App\\Http\\Controllers\\RoleController' => __DIR__ . '/../..' . '/app/Http/Controllers/RoleController.php',
         'App\\Http\\Controllers\\UserController' => __DIR__ . '/../..' . '/app/Http/Controllers/UserController.php',

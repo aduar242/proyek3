@@ -50,7 +50,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="col-md-6 col-xl-4">
+	<!-- <div class="col-md-6 col-xl-4">
 		<div class="card mb-3 widget-content bg-midnight-bloom">
 			<div class="widget-content-wrapper text-white">
 				<div class="widget-content-left">
@@ -62,8 +62,8 @@
 				</div>
 			</div>
 		</div>
-	</div>
-	<div class="d-xl-none d-lg-block col-md-6 col-xl-4">
+	</div> -->
+	<!-- <div class="d-xl-none d-lg-block col-md-6 col-xl-4">
 		<div class="card mb-3 widget-content bg-premium-dark">
 			<div class="widget-content-wrapper text-white">
 				<div class="widget-content-left">
@@ -75,32 +75,46 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	</div> -->
 </div>
 <div class="row">
 	<div class="col-md-12">
 		<div class="main-card mb-3 card">
-			<div class="card-header">Active Users
-				<div class="btn-actions-pane-right">
-					<div role="group" class="btn-group-sm btn-group">
-						<button class="active btn btn-focus">Last Week</button>
-						<button class="btn btn-focus">All Month</button>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-12">
-				@if (session('status'))
-					<div class="alert alert-success" role="alert">
-						{{ session('status') }}
-					</div>
-					@endif
-					You are logged in!!
-			</div>
-			<div class="d-block text-center card-footer">
-				<button class="mr-2 btn-icon btn-icon-only btn btn-outline-danger"><i class="pe-7s-trash btn-icon-wrapper"> </i></button>
-				<button class="btn-wide btn btn-success">Save</button>
+			<div class="card-header">Client Yang Masa Aktif Paket Akan Habis {{ date('d') }}</div>
+			<div class="table-responsive">
+				<table class="align-middle mb-0 table table-borderless table-striped table-hover">
+					<thead>
+						<tr>
+							<th>#</th>
+							<th>Nama Client</th>
+							<th>Desa</th>
+							<th>Paket</th>
+							<th>Tanggal Kadaluarsa</th>
+							<th>Pilihan</th>
+						</tr>
+					</thead>
+					<tbody>
+						@foreach($client as $cl)
+						
+						@if($cek)
+
+						@endif
+						<tr>
+							<td></td>
+							<td>Juan</td>
+							<td>Kalensari</td>
+							<td>2 MB</td>
+							<td>20 Februari 2020</td>
+							<td>
+								<button type="button" id="PopoverCustomT-3" class="btn btn-success btn-sm">Perpanjang</button>
+							</td>
+						</tr>
+						@endforeach
+					</tbody>
+				</table>
 			</div>
 		</div>
 	</div>
 </div>
+
 @endsection
