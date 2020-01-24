@@ -79,7 +79,10 @@
 <div class="row">
 	<div class="col-md-12">
 		<div class="main-card mb-3 card">
-			<div class="card-header">Client Yang Masa Aktif Paket Akan Habis <?php echo e(date('d')); ?></div>
+			$date1 = new DateTime('2020-01-26')
+			$date = date('Y-m-d')
+			$diff = date_diff($date1,$date)
+			<div class="card-header">Client Yang Masa Aktif Paket Akan Habis <?php echo e($diff); ?></div>
 			<div class="table-responsive">
 				<table class="align-middle mb-0 table table-borderless table-striped table-hover">
 					<thead>
