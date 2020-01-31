@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Client;
 use Illuminate\Http\Request;
+use DB;
+use App\Paket;
 
 class HomeController extends Controller
 {
@@ -24,7 +26,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $client = Client::get();
-        return view('home', compact('client'));
+        $client = Client::with('paket')->get();
+    
+        return view('home',compact('client'));
     }
 }

@@ -3,10 +3,10 @@
 </i>
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('judulPage'); ?>
-    Analisa
+    Dashboard
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('deskripsiPage'); ?>
-    analisa data pemasukan
+    Menu utama
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('content'); ?>
 <div class="row">
@@ -79,10 +79,7 @@
 <div class="row">
 	<div class="col-md-12">
 		<div class="main-card mb-3 card">
-			$date1 = new DateTime('2020-01-26')
-			$date = date('Y-m-d')
-			$diff = date_diff($date1,$date)
-			<div class="card-header">Client Yang Masa Aktif Paket Akan Habis <?php echo e($diff); ?></div>
+			<div class="card-header">Client Yang Masa Aktif Paket Akan Habis</div>
 			<div class="table-responsive">
 				<table class="align-middle mb-0 table table-borderless table-striped table-hover">
 					<thead>
@@ -97,18 +94,26 @@
 					</thead>
 					<tbody>
 						<?php $__currentLoopData = $client; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $cl): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-						
-						<?php if($cek): ?>
-
-						<?php endif; ?>
+							<?php 
+							$date  = date("Y-m-d");
+							$date  = date_create($date);
+							$date1 = $cl->masa_kadaluwarsa;
+							$date1 = date_create($date1);
+							$diff  = date_diff($date,$date1);
+							$hari  = $diff->format("%R%a");
+							$hari  = preg_replace("/[^0-9]/","", $hari);
+							?>
+							<?php if($hari>=3): ?>
+								continue;
+							<?php endif; ?>
 						<tr>
-							<td></td>
-							<td>Juan</td>
-							<td>Kalensari</td>
-							<td>2 MB</td>
-							<td>20 Februari 2020</td>
+							<td><?php echo e(1); ?></td>
+							<td><?php echo e($cl->nama); ?></td>
+							<td><?php echo e($cl->desa); ?></td>
+							<td><?php echo e($cl->paket['nama']); ?></td>
+							<td><?php echo e($cl->masa_kadaluwarsa); ?></td>
 							<td>
-								<button type="button" id="PopoverCustomT-3" class="btn btn-success btn-sm">Perpanjang</button>
+								<a href="<?php echo e(route('extend',$cl->id)); ?>" id="PopoverCustomT-1" class="btn btn-success">Perpanjang</a>
 							</td>
 						</tr>
 						<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>

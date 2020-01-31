@@ -4,10 +4,10 @@
 </i>
 @endsection
 @section('judulPage')
-    Analisa
+    Dashboard
 @endsection
 @section('deskripsiPage')
-    analisa data pemasukan
+    Menu utama
 @endsection
 @section('content')
 <div class="row">
@@ -80,10 +80,7 @@
 <div class="row">
 	<div class="col-md-12">
 		<div class="main-card mb-3 card">
-			$date1 = date_create('2020-01-26')
-			$date = date('Y-m-d')
-			$diff = date_diff($date1,$date)
-			<div class="card-header">Client Yang Masa Aktif Paket Akan Habis {{ $diff }}</div>
+			<div class="card-header">Client Yang Masa Aktif Paket Akan Habis</div>
 			<div class="table-responsive">
 				<table class="align-middle mb-0 table table-borderless table-striped table-hover">
 					<thead>
@@ -98,18 +95,26 @@
 					</thead>
 					<tbody>
 						@foreach($client as $cl)
-						
-						@if($cek)
-
-						@endif
+							<?php 
+							$date  = date("Y-m-d");
+							$date  = date_create($date);
+							$date1 = $cl->masa_kadaluwarsa;
+							$date1 = date_create($date1);
+							$diff  = date_diff($date,$date1);
+							$hari  = $diff->format("%R%a");
+							$hari  = preg_replace("/[^0-9]/","", $hari);
+							?>
+							@if($hari>=3)
+								continue;
+							@endif
 						<tr>
-							<td></td>
-							<td>Juan</td>
-							<td>Kalensari</td>
-							<td>2 MB</td>
-							<td>20 Februari 2020</td>
+							<td>{{ 1 }}</td>
+							<td>{{ $cl->nama }}</td>
+							<td>{{ $cl->desa }}</td>
+							<td>{{ $cl->paket['nama'] }}</td>
+							<td>{{ $cl->masa_kadaluwarsa }}</td>
 							<td>
-								<button type="button" id="PopoverCustomT-3" class="btn btn-success btn-sm">Perpanjang</button>
+								<a href="{{ route('extend',$cl->id)}}" id="PopoverCustomT-1" class="btn btn-success">Perpanjang</a>
 							</td>
 						</tr>
 						@endforeach

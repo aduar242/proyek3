@@ -54,6 +54,9 @@ Route::resource('/lap', 'LaporanController');
 Route::get('/lap','LaporanController@index')->name('lap');
 //end route
 
+Route::resource('extend','ExtendController');
+Route::get('extend/{id}','ExtendController@show')->name('extend');
+
 Route::get('/map', function (){
     $config['center'] = 'Air Canada Center, Toronto';
     $config['zoom'] = '14';

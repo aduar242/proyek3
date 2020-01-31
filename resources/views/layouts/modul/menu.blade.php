@@ -9,7 +9,7 @@
                     <a href="{{ route('home')}}">
                         @endif
                     <i class="metismenu-icon pe-7s-display1"></i>
-                    Analisa
+                    Dashboard
                 </a>
             </li>
             @role('Admin')

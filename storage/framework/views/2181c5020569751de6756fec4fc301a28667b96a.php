@@ -9,7 +9,7 @@
                     <a href="<?php echo e(route('home')); ?>">
                         <?php endif; ?>
                     <i class="metismenu-icon pe-7s-display1"></i>
-                    Analisa
+                    Dashboard
                 </a>
             </li>
             <?php if(auth()->check() && auth()->user()->hasRole('Admin')): ?>
