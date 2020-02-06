@@ -57,11 +57,17 @@
             </li>
             <li class="app-sidebar__heading">Manajemen Mapping</li>
             <li>
-                <a href="#">
+            <a href="{{ route('map')}}">
                     <i class="metismenu-icon pe-7s-map-2"></i>
                     Data mapping
                 </a>
             </li>
+            <li>
+                <a href="{{ route('setting')}}">
+                        <i class="metismenu-icon pe-7s-map-2"></i>
+                        Setting
+                    </a>
+                </li>
             <li class="app-sidebar__heading">Laporan</li>
             <li>
                 @if(URL::current() == URL::route('lap'))

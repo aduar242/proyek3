@@ -13,6 +13,19 @@
     <meta name="description" content="Wide selection of forms controls, using the Bootstrap 4 code base, but built with React.">
     <meta name="msapplication-tap-highlight" content="no">
 <link href="{{ asset('dashboard/main.css')}}" rel="stylesheet"></head>
+<style type="text/css">
+    .user-panel>.image>img {
+      width: 100%;
+      max-width: 150px;
+      height: auto;
+      margin: 0 auto;
+      display: block;
+    }
+    #map {
+      width: 100%;
+      height: 400px;
+    }
+    </style>
 <body>
 @extends('layouts.modal.hapus')
     <div class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header">
@@ -79,7 +92,10 @@
         $( '.tapel' ).mask('0000/0000');
         })
 </script>
-<script type="text/javascript" src="{{ asset('js/rupiah.js')}}"></script></body>
-<script type="text/javascript" src="{{ asset('js/jquery.js')}}"></script></body>
+@stack('js')
+<script src="https://maps.google.com/maps/api/js?key={{$gmaps_api_key}}"></script>
+<script type="text/javascript" src="{{ asset('jquery/dist/jquery.min.js')}}"></script>
+<script type="text/javascript" src="{{ asset('js/gmaps.js')}}"></script>
+<script type="text/javascript" src="{{ asset('js/rupiah.js')}}"></script>
 <script type="text/javascript" src="{{ asset('dashboard/assets/scripts/main.js')}}"></script></body>
 </html>

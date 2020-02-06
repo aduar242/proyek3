@@ -47,6 +47,20 @@ Route::resource('/role', 'RoleController');
 Route::get('/role', 'RoleController@index')->name('role');
 // END route bagian role
 
+// START route bagian MAP
+Route::resource('/map', 'MapController');
+Route::get('/map/edit/{id}', 'MapController@edit')->name('map.edit');
+Route::post('/map/edit/{id}', 'MapController@update')->name('map.update');
+Route::get('/map/destroy/{id}', 'MapController@destroy')->name('map.destroy');
+Route::get('/map', 'MapController@index')->name('map');
+// END route bagian MAP
+
+// START route bagian Setting Map
+Route::resource('/setting', 'SettingController');
+Route::get('/setting', 'SettingController@index')->name('setting');
+
+// END route bagian Setting Map
+
 });
 
 //STart route laporan
@@ -57,14 +71,3 @@ Route::get('/lap','LaporanController@index')->name('lap');
 Route::resource('extend','ExtendController');
 Route::get('extend/{id}','ExtendController@show')->name('extend');
 
-Route::get('/map', function (){
-    $config['center'] = 'Air Canada Center, Toronto';
-    $config['zoom'] = '14';
-    $config['map_height'] = '500px';
-    $config['scrollwheel'] = false;
-    GMaps::initialize($config);
-    $map = GMaps::create_map();
-
-    return view('map')-with('map', $map);
-
-});

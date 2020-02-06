@@ -13,6 +13,19 @@
     <meta name="description" content="Wide selection of forms controls, using the Bootstrap 4 code base, but built with React.">
     <meta name="msapplication-tap-highlight" content="no">
 <link href="<?php echo e(asset('dashboard/main.css')); ?>" rel="stylesheet"></head>
+<style type="text/css">
+    .user-panel>.image>img {
+      width: 100%;
+      max-width: 150px;
+      height: auto;
+      margin: 0 auto;
+      display: block;
+    }
+    #map {
+      width: 100%;
+      height: 400px;
+    }
+    </style>
 <body>
 
     <div class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header">
@@ -79,8 +92,11 @@
         $( '.tapel' ).mask('0000/0000');
         })
 </script>
-<script type="text/javascript" src="<?php echo e(asset('js/rupiah.js')); ?>"></script></body>
-<script type="text/javascript" src="<?php echo e(asset('js/jquery.js')); ?>"></script></body>
+<?php echo $__env->yieldPushContent('js'); ?>
+<script src="https://maps.google.com/maps/api/js?key=<?php echo e($gmaps_api_key); ?>"></script>
+<script type="text/javascript" src="<?php echo e(asset('jquery/dist/jquery.min.js')); ?>"></script>
+<script type="text/javascript" src="<?php echo e(asset('js/gmaps.js')); ?>"></script>
+<script type="text/javascript" src="<?php echo e(asset('js/rupiah.js')); ?>"></script>
 <script type="text/javascript" src="<?php echo e(asset('dashboard/assets/scripts/main.js')); ?>"></script></body>
 </html>
 

@@ -64,49 +64,14 @@
                 <div class="widget-content p-0">
                     <div class="widget-content-wrapper">
                         <div class="widget-content-left">
-                            <div class="btn-group">
-                                <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="p-0 btn">
-                                    <img width="42" class="rounded-circle" src="{{ asset('dashboard/assets/images/avatars/1.jpg')}}" alt="">
-                                    <i class="fa fa-angle-down ml-2 opacity-8"></i>
-                                </a>
-                                <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu dropdown-menu-right">
-                                    <button type="button" tabindex="0" class="dropdown-item">User Account</button>
-                                    @guest
-                                    <div tabindex="-1" class="dropdown-divider"></div>
-                                    <button type="button" tabindex="0" class="dropdown-item">
-                                        <a href="{{ route('login') }}">{{ __('Login') }}</a>
-                                    </button>
-                                    @if (Route::has('register'))
-                                    <button type="button" tabindex="0" class="dropdown-item">
-                                        <a href="{{ route('register') }}">{{ __('register') }}</a>
-                                    </button>
-                                    @endif
-                                    @else
-                                    <div tabindex="-1" class="dropdown-divider"></div>
                                     <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                    <button type="button" tabindex="0" class="dropdown-item">
+                                    <button type="button" tabindex="0" class="mb-1 mr-1 btn-transition btn btn-outline-danger">
                                             {{ __('Logout') }}
                                         </button>
                                     </a>
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf
                                     </form>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="widget-content-left  ml-3 header-user-info">
-                            <div class="widget-heading">
-                                {{ Auth::user()->name }}
-                            </div>
-                            <div class="widget-subheading">
-                                Manage dashboard
-                            </div>
-                        </div>
-                        @endguest
-                        <div class="widget-content-right header-user-info ml-3">
-                            <button type="button" class="btn-shadow p-1 btn btn-primary btn-sm show-toastr-example">
-                                <i class="fa text-white fa-calendar pr-1 pl-1"></i>
-                            </button>
                         </div>
                     </div>
                 </div>
