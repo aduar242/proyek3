@@ -81,6 +81,10 @@
 </div>
 @endsection
 @section('modal')
+@php
+    $invoice  = "TW";
+    $invoice .= date("YmdHis"); 
+@endphp
 <div class="ui-theme-settings">
     <button type="button" id="TooltipDemo" class="btn-open-options btn btn-warning">
         <i class="fa fa-plus fa-w-16 fa-2x"></i>
@@ -94,6 +98,7 @@
                     <div class="card-body">
                     <form class="" action="{{ route('client.store')}}" method="POST">
                         {{ csrf_field() }}
+                            <div class="position-relative form-group"><label for="exampleNama" class="">Invoice</label><input name="invoice" id="invoice" placeholder="with a placeholder" type="string" class="form-control {{ $errors->has('invoice') ? 'is-invalid':'' }}" value="{{ $invoice }}"></div>
                             <div class="position-relative form-group"><label for="exampleNama" class="">Nama</label><input name="nama" id="nama" placeholder="with a placeholder" type="string" class="form-control {{ $errors->has('nama') ? 'is-invalid':'' }}"></div>
                             <div class="position-relative form-group"><label for="exampledeskripsi" class="">Deskripsi</label><input name="deskripsi" id="nama" placeholder="with a placeholder" type="string" class="form-control {{ $errors->has('deskripsi') ? 'is-invalid':'' }}"></div>
                             <div class="position-relative form-group"><label for="exampleSelect" class="">Paket</label><select name="id_paket" id="id_paket" class="form-control" {{ $errors->has('id_paket') ? 'is-invalid':'' }}>

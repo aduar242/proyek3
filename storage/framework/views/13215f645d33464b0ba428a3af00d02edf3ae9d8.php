@@ -85,6 +85,7 @@
 
         </div>
     </div>
+<<<<<<< HEAD
 <script type="text/javascript">
     $(document).ready(function(){
         // Format mata uang.
@@ -99,6 +100,17 @@
 <script type="text/javascript" src="<?php echo e(asset('jquery/dist/jquery.min.js')); ?>"></script>
 <script type="text/javascript" src="<?php echo e(asset('js/rupiah.js')); ?>"></script>
 <script type="text/javascript" src="<?php echo e(asset('dashboard/assets/scripts/main.js')); ?>"></script></body>
+=======
+
+
+<script type="text/javascript" src="<?php echo e(asset('js/rupiah.js')); ?>"></script></body>
+<script type="text/javascript" src="<?php echo e(asset('js/jquery.js')); ?>"></script></body>
+<script type="text/javascript" src="<?php echo e(asset('dashboard/assets/scripts/main.js')); ?>"></script>
+
+<?php echo $__env->yieldContent('script'); ?>
+
+</body>
+>>>>>>> 7073b80028a403e9ce83129df4890ba7ac3d2772
 </html>
 
 <?php echo $__env->make('layouts.modal.hapus', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\proyek3\resources\views/layouts/app.blade.php ENDPATH**/ ?>

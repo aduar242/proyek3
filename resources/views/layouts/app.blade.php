@@ -85,6 +85,7 @@
 
         </div>
     </div>
+<<<<<<< HEAD
 <script type="text/javascript">
     $(document).ready(function(){
         // Format mata uang.
@@ -99,4 +100,15 @@
 <script type="text/javascript" src="{{ asset('jquery/dist/jquery.min.js')}}"></script>
 <script type="text/javascript" src="{{ asset('js/rupiah.js')}}"></script>
 <script type="text/javascript" src="{{ asset('dashboard/assets/scripts/main.js')}}"></script></body>
+=======
+
+
+<script type="text/javascript" src="{{ asset('js/rupiah.js')}}"></script></body>
+<script type="text/javascript" src="{{ asset('js/jquery.js')}}"></script></body>
+<script type="text/javascript" src="{{ asset('dashboard/assets/scripts/main.js')}}"></script>
+
+@yield('script')
+
+</body>
+>>>>>>> 7073b80028a403e9ce83129df4890ba7ac3d2772
 </html>
