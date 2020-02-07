@@ -56,6 +56,8 @@ Route::get('/lap','LaporanController@index')->name('lap');
 
 Route::resource('extend','ExtendController');
 Route::get('extend/{id}','ExtendController@show')->name('extend');
+Route::post('/harga','ExtendController@harga')->name('harga');
+Route::post('extend/update','ExtendController@update')->name('extend.update');
 
 Route::get('/map', function (){
     $config['center'] = 'Air Canada Center, Toronto';

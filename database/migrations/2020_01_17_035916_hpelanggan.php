@@ -16,7 +16,8 @@ class Hpelanggan extends Migration
     {
         Schema::create('history_p', function (Blueprint $table) {
             $table->increments('idh');
-            $table->integer('id');
+            $table->string('invoice');
+            $table->integer('id_cl');
             $table->integer('id_paket');
             $table->string('masa_aktif');
             $table->string('masa_kadaluwarsa');

@@ -16,7 +16,7 @@ class ClientController extends Controller
      */
     public function index()
     {
-        $clients = Client::with('paket')->orderBy('created_at', 'DESC')->paginate(3);
+        $clients = Client::with('paket')->orderBy('created_at', 'DESC')->paginate(10);
         $pakets = Paket::orderBy('nama', 'DESC')->get();
         return view('clients.index', compact('clients','pakets')); 
     }
@@ -48,6 +48,7 @@ class ClientController extends Controller
             'no_rumah' => 'required',
             'masa_aktif' => 'required',
             'masa_kadaluwarsa' => 'required',
+            'invoice' => 'required'
         ]);
         
         try {
@@ -61,6 +62,17 @@ class ClientController extends Controller
                 'masa_aktif' => $request->masa_aktif,
                 'masa_kadaluwarsa' => $request->masa_kadaluwarsa
             ]);
+            $id = $clients->id;
+            $h_pel = DB::table('history_p');
+            $h_pel->insert([
+                'id_cl' => $id,
+                'id_paket' => $request->id_paket,
+                'masa_aktif' => $request->masa_aktif,
+                'masa_kadaluwarsa' => $request->masa_kadaluwarsa,
+                'invoice' => $request->invoice
+
+            ]);
+
             return redirect(route('client'))->with(['success' => '<string>' , $clients->nama . '</strong> Ditambahkan']);
         } catch (\Exception $e){
             return redirect()->back()->with(['error' => $e->getMessage()]);
@@ -103,24 +115,18 @@ class ClientController extends Controller
         $this->validate($request, [
             'nama' => 'required',
             'deskripsi' => 'required',
-            'id_paket' => 'required|exists:pakets,id',
             'desa' => 'required',
             'kecamatan' => 'required',
             'no_rumah' => 'required',
-            'masa_aktif' => 'required',
-            'masa_kadaluwarsa' => 'required'
         ]);
         try {
             $client = Client::findOrFail($id);
             $client->update([
                 'nama' => $request->nama,
                 'deskripsi' => $request->deskripsi,
-                'id_paket' => $request->id_paket,
                 'desa' => $request->desa,
                 'kecamatan' => $request->kecamatan,
                 'no_rumah' => $request->no_rumah,
-                'masa_aktif' => $request->masa_aktif,
-                'masa_kadaluwarsa' => $request->masa_kadaluwarsa
             ]);
             return redirect(route('client'))
             ->with(['success' => '<strong>' . $client->nama . '</strong> Diperbaharui']);
@@ -132,24 +138,6 @@ class ClientController extends Controller
         return redirect(route('client'));        
     }
 
-    public function extend(Request $request){
-
-        $data = DB::table('client')->where('id',$request->id)->get();
-
-        DB::table('history_p')->insert([
-            'idh'=>$data->id,
-            'id_paket'=>$data->id_paket,
-            'masa_aktif'=>$data->masa_aktif,
-            'masa_kadaluwarsa'=>$data->masa_kadaluwarsa
-        ]);
-
-        DB::table('client')->where('id',$request->id)->update([
-            'id_paket'=>$request->id_paket,
-            'masa_aktif'=>$request->masa_aktif,
-            'masa_kadaluwarsa'=>$request->masa_kadaluwarsa,
-        ]);
-
-    }
 
     /**
      * Remove the specified resource from storage.

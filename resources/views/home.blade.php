@@ -50,37 +50,14 @@
 			</div>
 		</div>
 	</div>
-	<!-- <div class="col-md-6 col-xl-4">
-		<div class="card mb-3 widget-content bg-midnight-bloom">
-			<div class="widget-content-wrapper text-white">
-				<div class="widget-content-left">
-					<div class="widget-heading">Total Client</div>
-					<div class="widget-subheading">total client yang aktif</div>
-				</div>
-				<div class="widget-content-right">
-					<div class="widget-numbers text-white"><span>{{$client}}</span></div>
-				</div>
-			</div>
-		</div>
-	</div> -->
-	<!-- <div class="d-xl-none d-lg-block col-md-6 col-xl-4">
-		<div class="card mb-3 widget-content bg-premium-dark">
-			<div class="widget-content-wrapper text-white">
-				<div class="widget-content-left">
-					<div class="widget-heading">Products Sold</div>
-					<div class="widget-subheading">Revenue streams</div>
-				</div>
-				<div class="widget-content-right">
-					<div class="widget-numbers text-warning"><span>$14M</span></div>
-				</div>
-			</div>
-		</div>
-	</div> -->
 </div>
 <div class="row">
 	<div class="col-md-12">
 		<div class="main-card mb-3 card">
-			<div class="card-header">Client Yang Masa Aktif Paket Akan Habis</div>
+			<div style="padding: 20px;">
+				<h6 style="float: left;">Client Yang Masa Aktif Paket Akan Habis</h6>
+				<button style="float: right;" class="btn btn-primary btn-sm">Ingatkan</button>
+			</div>
 			<div class="table-responsive">
 				<table class="align-middle mb-0 table table-borderless table-striped table-hover">
 					<thead>
@@ -105,7 +82,9 @@
 							$hari  = preg_replace("/[^0-9]/","", $hari);
 							?>
 							@if($hari>=3)
+								<?php
 								continue;
+								?>
 							@endif
 						<tr>
 							<td>{{ 1 }}</td>
