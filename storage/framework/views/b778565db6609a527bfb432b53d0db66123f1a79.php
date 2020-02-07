@@ -99,7 +99,7 @@
                     <form class="" action="<?php echo e(route('client.store')); ?>" method="POST">
                         <?php echo e(csrf_field()); ?>
 
-                            <div class="position-relative form-group"><label for="exampleNama" class="">Invoice</label><input name="invoice" id="invoice" placeholder="with a placeholder" type="string" class="form-control <?php echo e($errors->has('invoice') ? 'is-invalid':''); ?>" value="<?php echo e($invoice); ?>"></div>
+                            <div class="position-relative form-group"><label for="exampleNama" class="">Invoice</label><input readonly name="invoice" id="invoice" placeholder="with a placeholder" type="string" class="form-control <?php echo e($errors->has('invoice') ? 'is-invalid':''); ?>" value="<?php echo e($invoice); ?>"></div>
                             <div class="position-relative form-group"><label for="exampleNama" class="">Nama</label><input name="nama" id="nama" placeholder="with a placeholder" type="string" class="form-control <?php echo e($errors->has('nama') ? 'is-invalid':''); ?>"></div>
                             <div class="position-relative form-group"><label for="exampledeskripsi" class="">Deskripsi</label><input name="deskripsi" id="nama" placeholder="with a placeholder" type="string" class="form-control <?php echo e($errors->has('deskripsi') ? 'is-invalid':''); ?>"></div>
                             <div class="position-relative form-group"><label for="exampleSelect" class="">Paket</label><select name="id_paket" id="id_paket" class="form-control" <?php echo e($errors->has('id_paket') ? 'is-invalid':''); ?>>
