@@ -51,14 +51,13 @@
     </div>
 </div>
 
-
 @push('js')
 <script>
     var map = new GMaps({
       el: '#map',
-      zoom: 10,
-      lat: -7.5812427,
-      lng: 111.9081293,
+      zoom: {{$set_zoom}},
+      lat: {{$latitude_centre}},
+      lng: {{$longitude_centre}},
       click: function(e) {
         // alert('click');
         var latLng = e.latLng;

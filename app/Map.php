@@ -30,6 +30,6 @@ class Map extends Model
 
     public function Kategori()
     {
-        return $this->belongsTo('App\Kategory', 'kategory_id', 'id');
+        return $this->belongsTo('App\Kategori', 'kategori_id', 'id');
     }
 }

@@ -12,20 +12,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no" />
     <meta name="description" content="Wide selection of forms controls, using the Bootstrap 4 code base, but built with React.">
     <meta name="msapplication-tap-highlight" content="no">
-<link href="{{ asset('dashboard/main.css')}}" rel="stylesheet"></head>
-<style type="text/css">
+    <link href="{{ asset('dashboard/main.css')}}" rel="stylesheet">
+    <script src="https://maps.googleapis.com/maps/api/js?key={{$gmaps_api_key}}"></script>
+    <script src="{{asset('js/gmaps.js')}}"></script>
+    <style type="text/css">
     .user-panel>.image>img {
-      width: 100%;
-      max-width: 150px;
-      height: auto;
-      margin: 0 auto;
-      display: block;
+        width: 100%;
+        max-width: 150px;
+        height: auto;
+        margin: 0 auto;
+        display: block;
     }
     #map {
-      width: 100%;
-      height: 400px;
+        width: 100%;
+        height: 400px;
     }
     </style>
+</head>
 <body>
 @extends('layouts.modal.hapus')
     <div class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header">
@@ -93,9 +96,7 @@
         })
 </script>
 @stack('js')
-<script src="https://maps.google.com/maps/api/js?key={{$gmaps_api_key}}"></script>
 <script type="text/javascript" src="{{ asset('jquery/dist/jquery.min.js')}}"></script>
-<script type="text/javascript" src="{{ asset('js/gmaps.js')}}"></script>
 <script type="text/javascript" src="{{ asset('js/rupiah.js')}}"></script>
 <script type="text/javascript" src="{{ asset('dashboard/assets/scripts/main.js')}}"></script></body>
 </html>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Setting;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Session;
 
 class SettingController extends Controller
 {
@@ -37,7 +38,16 @@ class SettingController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $requestData = $request->all();
+        foreach ($requestData as $key => $value) {
+            if($key != '_token'){
+                Setting::where('nama',$key)->update(['value'=>$value]);
+            }
+        }
+
+        Session::flash('flash_message', 'Setting added!');
+
+        return redirect('setting');
     }
 
     /**

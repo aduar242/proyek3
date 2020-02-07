@@ -57,6 +57,12 @@
             </li>
             <li class="app-sidebar__heading">Manajemen Mapping</li>
             <li>
+                <a href="<?php echo e(route('homemap')); ?>">
+                        <i class="metismenu-icon pe-7s-map-2"></i>
+                        Map
+                    </a>
+                </li>
+            <li>
             <a href="<?php echo e(route('map')); ?>">
                     <i class="metismenu-icon pe-7s-map-2"></i>
                     Data mapping

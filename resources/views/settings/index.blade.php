@@ -23,8 +23,38 @@
                     {!! $errors->first('value', '<p class="help-block">:message</p>') !!}
                 </div>
             </div>
+            @push('js')
+    <script>
+        var map = new GMaps({
+          el: '#map',
+          zoom: 10,
+          lat: {{$latitude_centre}},
+          lng: {{$longitude_centre}},
+          click: function(e) {
+            // alert('click');
+            var latLng = e.latLng;
+            console.log(latLng);
+            var lat = $('#latitude_centre');
+            var long = $('#longitude_centre');
+    
+            lat.val(latLng.lat());
+            long.val(latLng.lng());
+            map.removeMarkers();
+            map.addMarker({
+                lat: latLng.lat(),
+                lng: latLng.lng(),
+                title: 'Create Here',
+                click: function(e) {
+                    alert('You clicked in this marker');
+                }
+            });
+    
+        },
+    });
+    </script>
+    @endpush
             @endforeach
-
+            <div id="map"></div>
             <button type="submit" class="btn btn-primary">Submit</button>
         {!! Form::close() !!}
 
