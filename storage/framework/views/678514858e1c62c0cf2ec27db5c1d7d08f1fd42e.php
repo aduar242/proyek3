@@ -55,7 +55,7 @@
 		<div class="main-card mb-3 card">
 			<div style="padding: 20px;">
 				<h6 style="float: left;">Client Yang Masa Aktif Paket Akan Habis</h6>
-				<button style="float: right;" class="btn btn-primary btn-sm">Ingatkan</button>
+				<button style="float: right;" id="ingatkan" class="btn btn-primary btn-sm" type="button">Ingatkan</button>
 			</div>
 			<div class="table-responsive">
 				<table class="align-middle mb-0 table table-borderless table-striped table-hover">
@@ -103,5 +103,29 @@
 	</div>
 </div>
 
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('script'); ?>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        $('#ingatkan').click(function(){
+            $.ajax({
+                type : "get",
+                url  : "<?php echo route('ingatkan'); ?>",
+                success:function(data){
+                    $(this).html('Selesai');
+                }
+            });
+
+     	});
+
+    });
+</script>
 <?php $__env->stopSection(); ?>
 <?php echo $__env->make('layouts.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\proyek3\resources\views/home.blade.php ENDPATH**/ ?>

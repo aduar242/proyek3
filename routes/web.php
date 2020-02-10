@@ -12,10 +12,13 @@
 */
 
 Route::get('/','HomeController@index')->name('homemap');
-
+Route::get('/email', function () {
+    return view('email/email');
+});
 
 Auth::routes();
 Route::get('/home', 'HomeController@home')->name('home');
+Route::get('/ingatkan','HomeController@ingatkan')->name('ingatkan');
 
 Route::group(['middleware' => ['auth']], function() {
 

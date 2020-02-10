@@ -85,20 +85,15 @@
 
         </div>
     </div>
-<script type="text/javascript">
-    $(document).ready(function(){
-        // Format mata uang.
-        $( '.uang' ).mask('0.000.000.000', {reverse: true});
-        // Format nomor HP.
-        $( '.no_hp' ).mask('0000−0000−0000');
-        // Format tahun pelajaran.
-        $( '.tapel' ).mask('0000/0000');
-        })
-</script>
+
 <?php echo $__env->yieldPushContent('js'); ?>
 <script type="text/javascript" src="<?php echo e(asset('js/jquery.js')); ?>"></script>
 <script type="text/javascript" src="<?php echo e(asset('js/rupiah.js')); ?>"></script>
-<script type="text/javascript" src="<?php echo e(asset('dashboard/assets/scripts/main.js')); ?>"></script></body>
+<script type="text/javascript" src="<?php echo e(asset('dashboard/assets/scripts/main.js')); ?>"></script>
+
+
+<?php echo $__env->yieldContent('script'); ?>
+</body>
 </html>
 
 <?php echo $__env->make('layouts.modal.hapus', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\proyek3\resources\views/layouts/app.blade.php ENDPATH**/ ?>

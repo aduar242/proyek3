@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Mail\ReminderEmail;
+use Illuminate\Support\Facades\Mail;
 use App\Client;
 use DB;
 use App\Paket;
@@ -64,5 +66,12 @@ class HomeController extends Controller
         $client = Client::with('paket')->get();
     
         return view('home',compact('client'));
+    }
+
+    public function ingatkan(){
+
+        Mail::to("juanjuliyanto79@gmail.com")->send(new ReminderEmail());
+        
+        return "Reminder Email Berhasil Dikirim";
     }
 }

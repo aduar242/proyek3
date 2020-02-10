@@ -85,18 +85,13 @@
 
         </div>
     </div>
-<script type="text/javascript">
-    $(document).ready(function(){
-        // Format mata uang.
-        $( '.uang' ).mask('0.000.000.000', {reverse: true});
-        // Format nomor HP.
-        $( '.no_hp' ).mask('0000−0000−0000');
-        // Format tahun pelajaran.
-        $( '.tapel' ).mask('0000/0000');
-        })
-</script>
+
 @stack('js')
 <script type="text/javascript" src="{{ asset('js/jquery.js')}}"></script>
 <script type="text/javascript" src="{{ asset('js/rupiah.js')}}"></script>
-<script type="text/javascript" src="{{ asset('dashboard/assets/scripts/main.js')}}"></script></body>
+<script type="text/javascript" src="{{ asset('dashboard/assets/scripts/main.js')}}"></script>
+
+
+@yield('script')
+</body>
 </html>
