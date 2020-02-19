@@ -51,10 +51,14 @@
 </head>
 <body>
     <a class="gmaps" href="{{ route('home')}}">
-        <button type="button" tabindex="0" class="mb-1 mr-1 btn-transition btn btn-outline-primary">
+        <button type="button" tabindex="0" class="mb-2 mr-2 btn btn-primary">
             Dashboard
         </button>
         </a>
+    <div class="container-fluid">
+    <img style="width: 20%;height: auto;" src="{{ asset('dashboard/assets/images/logo-tole-wifi.png')}}"/>
+
+    </div>
     <div class="container-fluid">
         @yield('content')
 
@@ -68,16 +72,48 @@
           lng: {{ $longitude_centre }}
       });
 
+      map.addMarker({
+            lat: '{{ $latitude_centre }}',
+            lng: '{{ $longitude_centre }}',
+            title: '{{$app_name}} #',
+            icon: 'img/center.png',
+            infoWindow: {
+                content : '<h3>{{$app_name}}</h3><p>{{ $latitude_centre }}</p><p>{{ $longitude_centre }}</p>'
+            }
+        });
+      
         @foreach($data as $d)
+        @if ($d->masa_aktif >= $d->masa_kadaluarsa)
         map.addMarker({
+            lat: '{{$d->lat}}',
+            lng: '{{$d->long}}',
+            title: '{{$d->nama}} #',
+            icon: 'img/center.png',
+            infoWindow: {
+                content : '<h3>{{$d->nama}}</h3><p>{{$d->lat}}</p><p>{{$d->long}}</p>'
+            }
+            @else
+            map.addMarker({
             lat: '{{$d->lat}}',
             lng: '{{$d->long}}',
             title: '{{$d->nama}} #',
             icon: 'img/coba.png',
             infoWindow: {
-                content : '<h3>{{$d->nama}}</h3><p>{{$d->description}}</p><p>{{$d->no_telp}}</p>'
+                content : '<h3>{{$d->nama}}</h3><p>{{$d->lat}}</p><p>{{$d->long}}</p>'
             }
+            @endif
+        
         });
+        
+        path = [[{{$d->lat}},{{$d->long}}],[{{$latitude_centre}},{{$longitude_centre}}]];
+
+        map.drawPolyline({
+        path: path,
+        strokeColor: '#131540',
+        strokeOpacity: 0.6,
+        strokeWeight: 4
+        });
+        
         @endforeach
     </script>
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Paket;
 use App\Client;
+use App\Kecamatan;
 use Illuminate\Http\Request;
 use DB;
 
@@ -16,9 +17,10 @@ class ClientController extends Controller
      */
     public function index()
     {
+        $kecamatan = Kecamatan::All();
         $clients = Client::with('paket')->orderBy('created_at', 'DESC')->paginate(10);
         $pakets = Paket::orderBy('nama', 'DESC')->get();
-        return view('clients.index', compact('clients','pakets')); 
+        return view('clients.index', compact('clients','pakets','kecamatan')); 
     }
 
     /**
@@ -43,6 +45,8 @@ class ClientController extends Controller
             'nama' => 'required',
             'deskripsi' => 'required',
             'id_paket' => 'required|exists:pakets,id',
+            'lat' => 'required',
+            'long' => 'required',
             'desa' => 'required',
             'kecamatan' => 'required',
             'no_rumah' => 'required',
@@ -57,6 +61,8 @@ class ClientController extends Controller
                 'deskripsi' => $request->deskripsi,
                 'id_paket' => $request->id_paket,
                 'desa' => $request->desa,
+                'lat' => $request->lat,
+                'long' => $request->long,
                 'kecamatan' => $request->kecamatan,
                 'no_rumah' => $request->no_rumah,
                 'masa_aktif' => $request->masa_aktif,
@@ -118,6 +124,8 @@ class ClientController extends Controller
             'desa' => 'required',
             'kecamatan' => 'required',
             'no_rumah' => 'required',
+            'lat' => 'required',
+            'long' => 'required'
         ]);
         try {
             $client = Client::findOrFail($id);
@@ -127,6 +135,8 @@ class ClientController extends Controller
                 'desa' => $request->desa,
                 'kecamatan' => $request->kecamatan,
                 'no_rumah' => $request->no_rumah,
+                'lat' => $request->lat,
+                'long' => $request->long,
             ]);
             return redirect(route('client'))
             ->with(['success' => '<strong>' . $client->nama . '</strong> Diperbaharui']);
@@ -151,4 +161,18 @@ class ClientController extends Controller
         $clients->delete();
         return redirect()->back()->with(['success' => '<strong>' . $clients->name . '</strong> Telah Dihapus!']);
     }
+
+    public function kecamatan()
+    {
+        $kecamatan = Kecamatan::All();
+        return view('clients.index', compact('kecamatan')); 
+    }
+
+    public function alamat($kecamatan)
+    {
+        $kelurahan = DB::table('desa')->where('nm_kecamatan',$kecamatan)->get();
+        return response()->json([$kelurahan]);
+    }
+
+
 }

@@ -108,8 +108,49 @@
                                     <option value="<?php echo e($paket->id); ?>"><?php echo e(ucfirst($paket->nama)); ?></option>
                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                             </select></div>
-                            <div class="position-relative form-group"><label for="exampleDesa" class="">Desa</label><input name="desa" id="exampleDesa" placeholder="with a placeholder" type="string" class="form-control <?php echo e($errors->has('desa') ? 'is-invalid':''); ?>"></div>
-                            <div class="position-relative form-group"><label for="exampleKecamatan" class="">Kecamatan</label><input name="kecamatan" id="exampleKecamatan" placeholder="with a placeholder" type="string" class="form-control <?php echo e($errors->has('kecamatan') ? 'is-invalid':''); ?>"></div>
+                            <div class="row">
+                                <div class="col-sm-6 form-group">
+                                    <label>Kecamatan :</label>
+                                </div>
+                                <div class="col-sm-6">
+                                    <select class="form-control required" name="kecamatan" onchange="getval(this);">
+                                        <?php $__currentLoopData = $kecamatan; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $k): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                            <option value="<?php echo e($k->nm_kecamatan); ?>"><?php echo e($k->nm_kecamatan); ?></option>
+                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                    </select>
+                                </div>
+                                <div class="col-sm-6 form-group">
+                                    <label>Desa/Kelurahan :</label>
+                                </div>
+                                <div class="col-sm-6">
+                                    <select class="form-control required" name="desa" id="desa">
+                                        
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="position-relative form-group">
+                                <div id="map"></div>
+                            </div>
+                            <div hidden class="position-relative form-group <?php echo e($errors->has('lat') ? 'has-error' : ''); ?>">
+                                <?php echo Form::label('lat', 'Lat', ['class' => 'col-md-4 control-label']); ?>
+
+                                <div class="col-md-6">
+                                    <?php echo Form::text('lat', null, ['class' => 'form-control','id'=>'lat']); ?>
+
+                                    <?php echo $errors->first('lat', '<p class="help-block">:message</p>'); ?>
+
+                                </div>
+                            </div>
+                            <div hidden class="position-relative form-group <?php echo e($errors->has('long') ? 'has-error' : ''); ?>">
+                                <?php echo Form::label('long', 'Long', ['class' => 'col-md-4 control-label']); ?>
+
+                                <div class="col-md-6">
+                                    <?php echo Form::text('long', null, ['class' => 'form-control','id'=>'long']); ?>
+
+                                    <?php echo $errors->first('long', '<p class="help-block">:message</p>'); ?>
+
+                                </div>
+                            </div>
                             <div class="position-relative form-group"><label for="exampleNoRumah" class="">No rumah</label><input name="no_rumah" id="exampleNo_Rumah" placeholder="with a placeholder" type="string" class="form-control <?php echo e($errors->has('no_rumah') ? 'is-invalid':''); ?>"></div>
                             <div class="position-relative form-group"><label for="exampleMasaAktif" class="">Masa aktif</label><input name="masa_aktif" id="exampleMasaAktif" placeholder="with a placeholder" type="date" class="form-control <?php echo e($errors->has('masa_aktif') ? 'is-invalid':''); ?>"></div>
                             <div class="position-relative form-group"><label for="exampleMasaKadaluarsa" class="">Masa kadaluwarsa</label><input name="masa_kadaluwarsa" id="exampleMasaKadaluarsa" placeholder="with a placeholder" type="date" class="form-control <?php echo e($errors->has('masa_kadaluwarsa') ? 'is-invalid':''); ?>"></div>
@@ -120,7 +161,56 @@
             </div>
         </div>
     </div>
-</div>   
+</div>
+<script>
+    var map = new GMaps({
+      el: '#map',
+      zoom: <?php echo e($set_zoom); ?>,
+      lat: <?php echo e($latitude_centre); ?>,
+      lng: <?php echo e($longitude_centre); ?>,
+      click: function(e) {
+        // alert('click');
+        var latLng = e.latLng;
+        console.log(latLng);
+        var lat = $('#lat');
+        var long = $('#long');
+
+        lat.val(latLng.lat());
+        long.val(latLng.lng());
+        map.removeMarkers();
+        map.addMarker({
+            lat: latLng.lat(),
+            lng: latLng.lng(),
+            title: 'Create Here',
+            click: function(e) {
+                alert('You clicked in this marker');
+            }
+        });
+
+    },
+});
+</script>
+<script>
+    function getval(sel){
+        var kecamatan = sel.value;
+        $.ajax({
+            type:'GET',
+            url:"<?php echo e(url('a')); ?>/"+kecamatan,
+            success:function(data){
+                var kelurahan ='';
+                var panjangdata = data[0].length;
+                for (var index = 0; index < panjangdata; index++) {
+                    kelurahan+=`<option value="${data[0][index].nm_desa}">${data[0][index].nm_desa}</option>`; 
+                //   console.log(data[0][index].id_desa);
+                document.getElementById("desa").innerHTML =kelurahan;
+                }
+                // console.log(data);
+            }
+        });
+        console.log(kecamatan);
+    }
+    
+</script>   
 <?php $__env->stopSection(); ?>
 
 <?php echo $__env->make('layouts.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\proyek3\resources\views/clients/index.blade.php ENDPATH**/ ?>

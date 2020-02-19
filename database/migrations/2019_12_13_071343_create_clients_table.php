@@ -18,6 +18,8 @@ class CreateClientsTable extends Migration
             $table->string('nama');
             $table->text('deskripsi');
             $table->integer('id_paket');
+            $table->string('lat');
+            $table->string('long');
             $table->string('desa');
             $table->string('kecamatan');
             $table->string('no_rumah');

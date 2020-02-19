@@ -11,6 +11,7 @@ use App\Paket;
 use App\Setting;
 use App\Kategori;
 use App\Map;
+use Carbon\Carbon;
 
 class HomeController extends Controller
 {
@@ -32,29 +33,30 @@ class HomeController extends Controller
     
     public function index(Request $request)
     {
+        // $mytime = Carbon\Carbon::now();
         $input = $request->all();
-        if(isset($input['kategori_id'])){
-            $data = Map::where('kategori_id',$input['kategori_id'])->get();
-            $kategoryCount = $this->getKategoriCount($input['kategori_id']);
+        if(isset($input['id_paket'])){
+            $data = Client::where('id_paket',$input['id_paket'])->get();
+            $kategoryCount = $this->getKategoriCount($input['id_paket']);
         }
         else{
-            $data = Map::all();    
+            $data = Client::all();    
             $kategoryCount = $this->getKategoriCount();
         }
         
-        $kategori = Kategori::pluck('nama','id');
+        $kategori = Paket::pluck('nama','id');
         return view('map',compact('data','kategori','kategoryCount'));
     }
 
     public function getKategoriCount($kat_id='')
     {
-        $data = DB::table('data_kategori')
-            ->select('data_kategori.id','data_kategori.nama',DB::raw("count(data_maps.id) as jml"))
-            ->join('data_maps','data_maps.kategori_id','=','data_kategori.id')
-            ->groupBy('data_kategori.id','data_kategori.nama');
+        $data = DB::table('pakets')
+            ->select('pakets.id','pakets.nama',DB::raw("count(clients.id) as jml"))
+            ->join('clients','clients.id_paket','=','pakets.id')
+            ->groupBy('pakets.id','pakets.nama');
 
         if($kat_id){
-            $data = $data->where('data_maps.kategori_id',$kat_id);
+            $data = $data->where('clients.id_paket',$kat_id);
         }
         
 

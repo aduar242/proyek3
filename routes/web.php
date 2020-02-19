@@ -23,6 +23,7 @@ Route::get('/ingatkan','HomeController@ingatkan')->name('ingatkan');
 Route::group(['middleware' => ['auth']], function() {
 
 // START route bagian client
+route::get('/a/{kecamatan}','ClientController@alamat');
 Route::resource('/client', 'ClientController');
 Route::get('/client', 'ClientController@index')->name('client');
 Route::get('/client/destroy/{id}', 'ClientController@destroy')->name('client.destroy');
