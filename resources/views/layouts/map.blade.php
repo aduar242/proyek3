@@ -81,28 +81,20 @@
                 content : '<h3>{{$app_name}}</h3><p>{{ $latitude_centre }}</p><p>{{ $longitude_centre }}</p>'
             }
         });
-      
+
         @foreach($data as $d)
-        @if ($d->masa_aktif >= $d->masa_kadaluarsa)
         map.addMarker({
             lat: '{{$d->lat}}',
             lng: '{{$d->long}}',
             title: '{{$d->nama}} #',
+            @if ($d->masa_aktif >= $d->masa_kadaluwarsa)
             icon: 'img/center.png',
-            infoWindow: {
-                content : '<h3>{{$d->nama}}</h3><p>{{$d->lat}}</p><p>{{$d->long}}</p>'
-            }
             @else
-            map.addMarker({
-            lat: '{{$d->lat}}',
-            lng: '{{$d->long}}',
-            title: '{{$d->nama}} #',
             icon: 'img/coba.png',
+            @endif
             infoWindow: {
                 content : '<h3>{{$d->nama}}</h3><p>{{$d->lat}}</p><p>{{$d->long}}</p>'
             }
-            @endif
-        
         });
         
         path = [[{{$d->lat}},{{$d->long}}],[{{$latitude_centre}},{{$longitude_centre}}]];
