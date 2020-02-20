@@ -6,7 +6,13 @@ use App\Paket;
 use App\Client;
 use App\Kecamatan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\InvoiceMail;
+use App\Hclient;
 use DB;
+use File;
+use PDF;
+
 
 class ClientController extends Controller
 {
@@ -53,6 +59,7 @@ class ClientController extends Controller
             'masa_aktif' => 'required',
             'masa_kadaluwarsa' => 'required',
             'invoice' => 'required'
+            'email' => 'required'
         ]);
         
         try {
@@ -60,6 +67,7 @@ class ClientController extends Controller
                 'nama' => $request->nama,
                 'deskripsi' => $request->deskripsi,
                 'id_paket' => $request->id_paket,
+                'email'=> $request->email,
                 'desa' => $request->desa,
                 'lat' => $request->lat,
                 'long' => $request->long,
@@ -69,8 +77,7 @@ class ClientController extends Controller
                 'masa_kadaluwarsa' => $request->masa_kadaluwarsa
             ]);
             $id = $clients->id;
-            $h_pel = DB::table('history_p');
-            $h_pel->insert([
+            Hclient::create([
                 'id_cl' => $id,
                 'id_paket' => $request->id_paket,
                 'masa_aktif' => $request->masa_aktif,
@@ -78,6 +85,16 @@ class ClientController extends Controller
                 'invoice' => $request->invoice
 
             ]);
+            // Membuat PDF
+            $namapdf = 'pdf/'.$request->invoice.'.pdf';
+            $client = Hclient::with(['client','paket'])->where('invoice',$request->invoice)->get();
+            $pdf = PDF::loadview('pdf/transaksi',['client'=>$client]);
+            // save PDF
+            $pdf->save($namapdf);
+             // Kirim Mail dengan PDF
+             Mail::to($client->email)->send(new InvoiceMail($request->invoice));
+             // Delete PDF
+             File::delete($namapdf);
 
             return redirect(route('client'))->with(['success' => '<string>' , $clients->nama . '</strong> Ditambahkan']);
         } catch (\Exception $e){

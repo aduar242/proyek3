@@ -11,4 +11,8 @@ class Client extends Model
     public function paket(){
         return $this->belongsTo('App\Paket','id_paket');
     }
+
+    public function hclient(){
+    	return $this->hasmany('App\Hclient');
+    }
 }

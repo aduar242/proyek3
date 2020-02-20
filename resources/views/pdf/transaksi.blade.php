@@ -26,6 +26,19 @@
 			</tr>
 		</thead>
 		<tbody>
+			@php
+				$no = 1;
+			@endphp
+			@foreach($client as $cl)
+			<tr>
+				<td>{{$no++}}</td>
+				<td>{{$cl->client['nama']}}</td>
+				<td>{{$cl->invoice}}</td>
+				<td>{{$cl->paket['nama']}}</td>
+				<td>{{$cl->masa_aktif}}</td>
+				<td>{{$cl->masa_kadaluwarsa}}</td>
+			</tr>
+			@endforeach
 		</tbody>
 	</table>
  

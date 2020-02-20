@@ -16,9 +16,12 @@ class InvoiceMail extends Mailable
      *
      * @return void
      */
-    public function __construct()
+
+    public $invoice;
+
+    public function __construct($invoice)
     {
-        //
+        $this->invoice = $invoice;
     }
 
     /**
@@ -31,10 +34,12 @@ class InvoiceMail extends Mailable
         {
         return $this->from('tolewife@tolewifi.com')
                     ->view('email/email')
-                    ->with([
-                        'Test'=>'Juan Juliyanto',
-                        'Website'=>'www.tolewifi.com'
-                    ]);
+                    ->with(
+                    [
+                        'nama' => 'Diki Alfarabi Hadi',
+                        'website' => 'www.malasngoding.com',
+                    ])
+                    ->attach(public_path('pdf').'/'.$this->invoice.'.pdf');
     }
     }
 }

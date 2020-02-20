@@ -100,7 +100,8 @@
                         {{ csrf_field() }}
                             <div class="position-relative form-group"><label for="exampleNama" class="">Invoice</label><input readonly name="invoice" id="invoice" placeholder="with a placeholder" type="string" class="form-control {{ $errors->has('invoice') ? 'is-invalid':'' }}" value="{{ $invoice }}"></div>
                             <div class="position-relative form-group"><label for="exampleNama" class="">Nama</label><input name="nama" id="nama" placeholder="with a placeholder" type="string" class="form-control {{ $errors->has('nama') ? 'is-invalid':'' }}"></div>
-                            <div class="position-relative form-group"><label for="exampledeskripsi" class="">Deskripsi</label><input name="deskripsi" id="nama" placeholder="with a placeholder" type="string" class="form-control {{ $errors->has('deskripsi') ? 'is-invalid':'' }}"></div>
+                            <div class="position-relative form-group"><label for="exampleEmail" class="">Email</label><input name="email" placeholder="with a placeholder" type="string" class="form-control {{ $errors->has('email') ? 'is-invalid':'' }}"></div>
+                            <div class="position-relative form-group"><label for="exampledeskripsi" class="">Deskripsi</label><input name="deskripsi" placeholder="with a placeholder" type="string" class="form-control {{ $errors->has('deskripsi') ? 'is-invalid':'' }}"></div>
                             <div class="position-relative form-group"><label for="exampleSelect" class="">Paket</label><select name="id_paket" id="id_paket" class="form-control" {{ $errors->has('id_paket') ? 'is-invalid':'' }}>
                                 <option value="">Pilih :</option>
                                 @foreach ($pakets as $paket)
