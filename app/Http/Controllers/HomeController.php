@@ -35,7 +35,7 @@ class HomeController extends Controller
     
     public function index(Request $request)
     {
-        // $mytime = Carbon\Carbon::now();
+        $mytime = Carbon\Carbon::now();
         $input = $request->all();
         if(isset($input['id_paket'])){
             $data = Client::where('id_paket',$input['id_paket'])->get();
@@ -47,7 +47,7 @@ class HomeController extends Controller
         }
         
         $kategori = Paket::pluck('nama','id');
-        return view('map',compact('data','kategori','kategoryCount'));
+        return view('map',compact('data','kategori','kategoryCount','mytime'));
     }
 
     public function getKategoriCount($kat_id='')
