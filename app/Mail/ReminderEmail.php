@@ -33,10 +33,6 @@ class ReminderEmail extends Mailable
                     ->with([
                         'Test'=>'Juan Juliyanto',
                         'Website'=>'www.tolewifi.com'
-                    ])
-                    ->attach(public_path('/img').'/coba.png', [
-                      'as' => 'coba.jpg',
-                      'mime' => 'image/png',
-                    ]);;
+                    ]);
     }
 }
