@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Client;
 use App\Paket;
 use DateTime;
+use DB;
 
 class ExtendController extends Controller
 {

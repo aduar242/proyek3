@@ -88,9 +88,9 @@
             lng: '{{$d->long}}',
             title: '{{$d->nama}} #',
             @if ($d->masa_aktif >= $d->masa_kadaluwarsa)
-            icon: 'img/center.png',
+            icon: 'img/blmBayar.png',
             @else
-            icon: 'img/coba.png',
+            icon: 'img/sdhBayar.png',
             @endif
             infoWindow: {
                 content : '<h3>{{$d->nama}}</h3><p>{{$d->lat}}</p><p>{{$d->long}}</p>'
