@@ -55,6 +55,7 @@
 		<div class="main-card mb-3 card">
 			<div style="padding: 20px;">
 				<h6 style="float: left;">Client Yang Masa Aktif Paket Akan Habis</h6>
+				<input id="token" type="hidden" name="_token" value="<?php echo e(csrf_token()); ?>">
 				<button style="float: right;" id="ingatkan" class="btn btn-primary btn-sm" type="button">Ingatkan</button>
 			</div>
 			<div class="table-responsive">
@@ -115,11 +116,15 @@
         });
 
         $('#ingatkan').click(function(){
+        	$(this).html('Mengingatkan..');
+        	var token = $("#token").val();
             $.ajax({
                 type : "get",
                 url  : "<?php echo route('ingatkan'); ?>",
+                data : {_token:token},
                 success:function(data){
-                    alert(data);
+                	alert(data);
+                    $(this).html('Ingatkan');
                 }
             });
 
