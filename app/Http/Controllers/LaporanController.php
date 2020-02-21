@@ -9,7 +9,8 @@ use DB;
 class LaporanController extends Controller
 {
     public function index(){
-    		$laporan = DB::table('history_p','client')->orderby('created_at','DESC')->get();
-    		return view('laporan.index',['laporan'=>$laporan]);
+    		$month = date("m");
+    		$laporan = DB::table('history_p')->whereMonth('created_at',$month)->orderby('created_at','DESC')->get();
+    		return view('laporan.index',compact('laporan'));
     }
 }

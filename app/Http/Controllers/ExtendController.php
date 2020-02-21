@@ -4,11 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use App\Client;
 use App\Paket;
+use App\Hclient;
 use DateTime;
+use PDF;
 use DB;
-
+use File;
+use App\Mail\InvoiceMail;
 class ExtendController extends Controller
 {
    public function show($id)
@@ -25,11 +29,12 @@ class ExtendController extends Controller
    		}
    }
    public function update(Request $request){
-         $invoice = "TW";
-         $invoice .= date("YmdHis");
+      $invoice = "TW";
+      $invoice .= date("YmdHis");
    		$data = Client::where('id',$request->id)->get();
    		foreach ($data as $dat) {
    			$tanggal = $dat->masa_kadaluarsa;
+        $email = $dat->email;
    		}
    		$now     = date("Y-m-d");
    		$tanggal = new DateTime($tanggal);
@@ -40,16 +45,23 @@ class ExtendController extends Controller
    			'masa_kadaluwarsa'=>$tanggal,
    			'masa_aktif'=>$now
    		]);
-         $h_pel = DB::table('history_p');
-         $h_pel->insert([
-          'id_cl' => $request->id,
-          'id_paket' => $request->paket,
-          'masa_aktif' => $now,
-          'masa_kadaluwarsa' => $tanggal,
-          'invoice' => $invoice
-         ]);
-
+       Hclient::create([
+        'id_cl' => $request->id,
+        'id_paket' => $request->paket,
+        'masa_aktif' => $now,
+        'masa_kadaluwarsa' => $tanggal,
+        'invoice' => $invoice
+       ]);
+        $namapdf = 'pdf/'.$invoice.'.pdf';
+        $client = Hclient::with(['client','paket'])->where('invoice',$invoice)->get();
+        $pdf = PDF::loadview('pdf/transaksi',['client'=>$client]);
+        $pdf->save($namapdf);
+         // Kirim Mail
+         Mail::to($client->email)->send(new InvoiceMail($invoice));
+         // Delete PDF
+         File::delete($namapdf);
+         // Return View
          $client = Client::with('paket')->get();
-         return view('home',compact('client'));
+         return redirect(route('home'));
    }
 } 

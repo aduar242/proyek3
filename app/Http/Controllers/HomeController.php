@@ -11,7 +11,9 @@ use App\Paket;
 use App\Setting;
 use App\Kategori;
 use App\Map;
-use Carbon;
+use Carbon\Carbon;
+use PDF;
+use DateTime;
 
 class HomeController extends Controller
 {
@@ -72,7 +74,18 @@ class HomeController extends Controller
 
     public function ingatkan(){
 
-        Mail::to("juanjuliyanto79@gmail.com")->send(new ReminderEmail());
+        $date = date("Y-m-d");
+        $client = Client::get();
+        foreach ($client as $cl) {
+            $date1 = $cl->masa_kadaluwarsa;
+            $diff  = date_diff($date,$date1);
+            $hari  = $diff->format("%R%a");
+            $hari  = preg_replace("/[^0-9]/","", $hari);
+            if ($hari<=3) {
+                $email = $cl->email;
+                Mail::to($email)->send(new ReminderEmail());
+            }
+        }
         
         return "Reminder Email Berhasil Dikirim";
     }

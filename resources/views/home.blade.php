@@ -120,7 +120,7 @@
                 type : "get",
                 url  : "<?php echo route('ingatkan'); ?>",
                 success:function(data){
-                    $(this).html('Selesai');
+                    alert(data);
                 }
             });
 

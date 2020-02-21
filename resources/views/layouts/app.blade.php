@@ -13,6 +13,7 @@
     <meta name="description" content="Wide selection of forms controls, using the Bootstrap 4 code base, but built with React.">
     <meta name="msapplication-tap-highlight" content="no">
     <link href="{{ asset('dashboard/main.css')}}" rel="stylesheet">
+    <link href="{{ asset('bootstrap-datepicker/css/bootstrap-datepicker.min.css')}}" rel="stylesheet">
     <script src="https://maps.googleapis.com/maps/api/js?key={{$gmaps_api_key}}"></script>
     <script src="{{asset('js/gmaps.js')}}"></script>
     <style type="text/css">
@@ -90,6 +91,7 @@
 <script type="text/javascript" src="{{ asset('js/jquery.js')}}"></script>
 <script type="text/javascript" src="{{ asset('js/rupiah.js')}}"></script>
 <script type="text/javascript" src="{{ asset('dashboard/assets/scripts/main.js')}}"></script>
+<script type="text/javascript" src="{{ asset('bootstrap-datepicker/js/bootstrap-datepicker.min.js')}}"></script>
 
 
 @yield('script')
