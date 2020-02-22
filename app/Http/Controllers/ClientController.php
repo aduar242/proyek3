@@ -58,7 +58,7 @@ class ClientController extends Controller
             'no_rumah' => 'required',
             'masa_aktif' => 'required',
             'masa_kadaluwarsa' => 'required',
-            'invoice' => 'required'
+            'invoice' => 'required',
             'email' => 'required'
         ]);
         

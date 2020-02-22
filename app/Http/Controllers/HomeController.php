@@ -11,7 +11,7 @@ use App\Paket;
 use App\Setting;
 use App\Kategori;
 use App\Map;
-use Carbon\Carbon;
+use Carbon;
 use PDF;
 use DateTime;
 
