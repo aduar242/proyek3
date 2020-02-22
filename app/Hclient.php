@@ -8,6 +8,14 @@ class Hclient extends Model
 {
     protected $table = 'history_p';
 
+    protected $fillable = [
+    	'id_cl', 
+    	'id_paket',
+    	'invoice',
+    	'masa_aktif',
+    	'masa_kadaluwarsa'
+    ];
+
     public function client(){
     	return $this->belongsTo('App\Client','id_cl');
     }

@@ -75,9 +75,11 @@ class HomeController extends Controller
     public function ingatkan(){
 
         $date = date("Y-m-d");
+        $date = date_create($date);
         $client = Client::get();
         foreach ($client as $cl) {
             $date1 = $cl->masa_kadaluwarsa;
+            $date1 = date_create($date1);
             $diff  = date_diff($date,$date1);
             $hari  = $diff->format("%R%a");
             $hari  = preg_replace("/[^0-9]/","", $hari);
@@ -86,7 +88,7 @@ class HomeController extends Controller
                 Mail::to($email)->send(new ReminderEmail());
             }
         }
-        
-        return "Reminder Email Berhasil Dikirim";
+        $data = 'berhasil';
+        return $data;
     }
 }

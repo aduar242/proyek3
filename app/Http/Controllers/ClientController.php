@@ -85,6 +85,7 @@ class ClientController extends Controller
                 'invoice' => $request->invoice
 
             ]);
+            $email = $client->email;
             // Membuat PDF
             $namapdf = 'pdf/'.$request->invoice.'.pdf';
             $client = Hclient::with(['client','paket'])->where('invoice',$request->invoice)->get();
@@ -92,7 +93,7 @@ class ClientController extends Controller
             // save PDF
             $pdf->save($namapdf);
              // Kirim Mail dengan PDF
-             Mail::to($client->email)->send(new InvoiceMail($request->invoice));
+             Mail::to($email)->send(new InvoiceMail($request->invoice));
              // Delete PDF
              File::delete($namapdf);
 
