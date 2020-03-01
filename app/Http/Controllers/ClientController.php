@@ -51,6 +51,8 @@ class ClientController extends Controller
             'nama' => 'required',
             'deskripsi' => 'required',
             'id_paket' => 'required|exists:pakets,id',
+            'lat' => 'required',
+            'long' => 'required',
             'desa' => 'required',
             'kecamatan' => 'required',
             'no_rumah' => 'required',
@@ -67,8 +69,8 @@ class ClientController extends Controller
                 'id_paket' => $request->id_paket,
                 'email'=> $request->email,
                 'desa' => $request->desa,
-                'lat' => '434234234234',
-                'long' => '4324234234',
+                'lat' => $request->lat,
+                'long' => $request->long,
                 'kecamatan' => $request->kecamatan,
                 'no_rumah' => $request->no_rumah,
                 'masa_aktif' => $request->masa_aktif,
@@ -83,7 +85,7 @@ class ClientController extends Controller
                 'invoice' => $request->invoice
 
             ]);
-            $email = $clients->email;
+            $email = $client->email;
             // Membuat PDF
             $namapdf = 'pdf/'.$request->invoice.'.pdf';
             $client = Hclient::with(['client','paket'])->where('invoice',$request->invoice)->get();

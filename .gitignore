@@ -1,2 +1,6 @@
-vendor/
 .env
+<<<<<<< HEAD
+/vendor
+=======
+vendor/
+>>>>>>> ba65c0b82e47b3b35fd0cd04ba0999c905996a98
