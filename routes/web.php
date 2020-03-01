@@ -67,8 +67,14 @@ Route::get('/setting', 'SettingController@index')->name('setting');
 
 //STart route laporan
 Route::resource('/lap', 'LaporanController');
-Route::get('/lap','LaporanController@index')->name('lap');
+Route::get('/lap','LaporanController@show')->name('lap');
+Route::post('/lap/ubah','LaporanController@ubah')->name('ubah.lap');
+Route::post('/lap/cetak','LaporanController@cetak')->name('cetak.lap');
 //end route
+// Start route pelayanan
+Route::resource('/pelayanan','PelayananController');
+Route::get('/pelayanan','PelayananController@show')->name('pel');
+// end route
 
 Route::resource('extend','ExtendController');
 Route::get('extend/{id}','ExtendController@show')->name('extend');

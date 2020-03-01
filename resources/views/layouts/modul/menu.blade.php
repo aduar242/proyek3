@@ -90,6 +90,18 @@
             @role('Kasir')
             <li class="app-sidebar__heading">Pelayanan</li>
             <li>
+                @if(URL::current() == URL::route('pel'))
+                <a href="{{ route('pel')}}" class="mm-active">
+                    @else
+                        <a href="{{ route('pel')}}">
+                        @endif
+                    <i class="metismenu-icon pe-7s-display2">
+                    </i>
+                    Pelayanan
+                </a>
+            </li>
+            <li class="app-sidebar__heading">Laporan</li>
+            <li>
                 @if(URL::current() == URL::route('lap'))
                 <a href="{{ route('lap')}}" class="mm-active">
                     @else
@@ -97,7 +109,7 @@
                         @endif
                     <i class="metismenu-icon pe-7s-display2">
                     </i>
-                    Pelayanan
+                    Laporan
                 </a>
             </li>
             @endrole

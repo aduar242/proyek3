@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Mail\ReminderEmail;
 use Illuminate\Support\Facades\Mail;
 use App\Client;
+use App\Hclient;
 use DB;
 use App\Paket;
 use App\Setting;
@@ -67,9 +68,12 @@ class HomeController extends Controller
 
     public function home()
     {
+        $month = date("m");
+        $transaksi = Hclient::whereMonth('created_at',$month)->count();
+        $total = Hclient::all()->count();
         $client = Client::with('paket')->get();
     
-        return view('home',compact('client'));
+        return view('home',compact('client','total','transaksi'));
     }
 
     public function ingatkan(){

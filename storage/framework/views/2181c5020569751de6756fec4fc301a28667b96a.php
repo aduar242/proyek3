@@ -90,6 +90,18 @@
             <?php if(auth()->check() && auth()->user()->hasRole('Kasir')): ?>
             <li class="app-sidebar__heading">Pelayanan</li>
             <li>
+                <?php if(URL::current() == URL::route('pel')): ?>
+                <a href="<?php echo e(route('pel')); ?>" class="mm-active">
+                    <?php else: ?>
+                        <a href="<?php echo e(route('pel')); ?>">
+                        <?php endif; ?>
+                    <i class="metismenu-icon pe-7s-display2">
+                    </i>
+                    Pelayanan
+                </a>
+            </li>
+            <li class="app-sidebar__heading">Laporan</li>
+            <li>
                 <?php if(URL::current() == URL::route('lap')): ?>
                 <a href="<?php echo e(route('lap')); ?>" class="mm-active">
                     <?php else: ?>
@@ -97,7 +109,7 @@
                         <?php endif; ?>
                     <i class="metismenu-icon pe-7s-display2">
                     </i>
-                    Pelayanan
+                    Laporan
                 </a>
             </li>
             <?php endif; ?>

@@ -11,41 +11,82 @@
 @endsection
 @section('content')
 <div class="row">
-	<div class="col-md-6 col-xl-4">
+	<div class="col-md-6 col-xl-3">
 		<div class="card mb-3 widget-content bg-arielle-smile">
 			<div class="widget-content-wrapper text-white">
 				<div class="widget-content-left">
-					<div class="widget-heading">Total client yang bayar</div>
-					<div class="widget-subheading">Januari 2019</div>
+					<div class="widget-heading">Total Client yang Aktif</div>
+					<div class="widget-subheading">Client dengan Paket Aktif</div>
 				</div>
 				<div class="widget-content-right">
-					<div class="widget-numbers text-white"><span>Rp. 1.000.000</span></div>
+					<div class="widget-numbers text-white">
+					@php
+						$jum=0;
+					@endphp
+					@foreach($client as $cl)
+					@php
+						$now = date("Y-m-d");
+						$tanggal = new DateTime($cl->masa_kadaluwarsa);
+						$tanggal = $tanggal->format("Y-m-d");
+						if($now<=$tanggal){
+							$jum++;
+						}
+					@endphp
+					@endforeach
+						<span>{{$jum}}</span></div>
 				</div>
 			</div>
 		</div>
 	</div>
-	<div class="col-md-6 col-xl-4">
+	<div class="col-md-6 col-xl-3">
 		<div class="card mb-3 widget-content bg-grow-early">
 			<div class="widget-content-wrapper text-white">
 				<div class="widget-content-left">
-					<div class="widget-heading">Total client yang belum bayar</div>
-					<div class="widget-subheading">Januari 2019</div>
+					<div class="widget-heading">Total Client yang Non-Aktif</div>
+					<div class="widget-subheading">Client dengan Paket Non-Aktif</div>
 				</div>
 				<div class="widget-content-right">
-					<div class="widget-numbers text-white"><span>Rp. 1.000.000</span></div>
+					<div class="widget-numbers text-white">
+					@php
+						$jum=0;
+					@endphp
+					@foreach($client as $cl)
+					@php
+						$now = date("Y-m-d");
+						$tanggal = new DateTime($cl->masa_kadaluwarsa);
+						$tanggal = $tanggal->format("Y-m-d");
+						if($now>=$tanggal){
+							$jum++;
+						}
+					@endphp
+					@endforeach
+						<span>{{$jum}}</span></div>
 				</div>
 			</div>
 		</div>
 	</div>
-	<div class="col-md-6 col-xl-4">
+	<div class="col-md-6 col-xl-3">
+		<div class="card mb-3 widget-content bg-arielle-smile">
+			<div class="widget-content-wrapper text-white">
+				<div class="widget-content-left">
+					<div class="widget-heading">Total Transaksi</div>
+					<div class="widget-subheading">Bulan Ini</div>
+				</div>
+				<div class="widget-content-right">
+					<div class="widget-numbers text-white"><span>{{$transaksi}}</span></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-6 col-xl-3">
 		<div class="card mb-3 widget-content bg-grow-early">
 			<div class="widget-content-wrapper text-white">
 				<div class="widget-content-left">
-					<div class="widget-heading">Total Pemasukan</div>
-					<div class="widget-subheading">Januari 2019</div>
+					<div class="widget-heading">Total Transaksi</div>
+					<div class="widget-subheading">Semua Transaksi</div>
 				</div>
 				<div class="widget-content-right">
-					<div class="widget-numbers text-white"><span>Rp. 2.000.000</span></div>
+					<div class="widget-numbers text-white"><span>{{$total}}</span></div>
 				</div>
 			</div>
 		</div>

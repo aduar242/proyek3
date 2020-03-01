@@ -20,7 +20,7 @@
             	<div class="row">
                     <div class="col-md-3">
                         <select class="form-control" id="bulan">
-                            <option>Bulan Ini</option>
+                            <option value="00">Bulan Ini</option>
                             <option value="01">Januari</option>
                             <option value="02">Februari</option>
                             <option value="03">Maret</option>
@@ -36,12 +36,16 @@
 
                         </select>
                     </div>
+                    <!-- Table -->
             		<div class="col-md-2">
-            			<input style="max-width: 200px;" class="form-control date-picker" type="text" id="tahun" placeholder="Tahun">
+                        @php
+                            $tahun = date("Y");
+                        @endphp
+            			<input style="max-width: 200px;" class="form-control date-picker" type="text" id="tahun" value="{{$tahun}}">
             		</div>
             		<div class="col-md-3">
             			<button class="btn btn-lg btn-primary" id="cari">Cari</button>
-            			<button class="btn btn-lg btn-info">Cetak</button>
+            			<button id="cetak" class="btn btn-lg btn-info">Cetak</button>
             		</div>
             	</div>
             	<br>
@@ -54,14 +58,29 @@
                         <th>Paket</th>
                         <th>Masa Aktif</th>
                         <th>Masa Kadaluwarsa</th>
-                        <th class="text-right">Action</th>
                     </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="body-t">
+                        @php
+                        $no = 1;
+                        @endphp
                         @foreach($laporan as $lap)
                         <tr>
+                            <td>{{$no}}</td>
+                            <td>{{$lap->invoice}}</td>
+                            @php
+                                $tanggal = new DateTime($lap->created_at);
+                                $tanggal = $tanggal->Format("d-m-Y");
+                            @endphp
+                            <td>{{$tanggal}}</td>
+                            <td>{{$lap->paket->nama}}</td>
+                            <td>{{$lap->masa_aktif}}</td>
+                            <td>{{$lap->masa_kadaluwarsa}}</td>
                             <td></td>
                         </tr>
+                        @php
+                        $no++;
+                        @endphp
                         @endforeach
                     </tbody>
                 </table>
@@ -86,8 +105,39 @@ $(document).ready(function(){
        });
 
         $("#cari").click(function(){
-            var id = $("#tahun").val();
-            $("#cari").html(id);
+            var th = $("#tahun").val();
+            var bl = $("#bulan").val();
+            var token = $("input[nama='_token']").val();
+            $.ajax({
+                type : "post",
+                url  : "<?php echo route('ubah.lap'); ?>",
+                data : {
+                    _token:token,
+                    th:th,
+                    bl:bl
+                },
+                success:function(data){
+                    $("#body-t").html(data);
+                }
+            });
+        });
+
+        $("#cetak").click(function(){
+            var th = $("#tahun").val();
+            var bl = $("#bulan").val();
+            var token = $("input[nama='_token']").val();
+            $.ajax({
+                type : "post",
+                url  : "<?php echo route('cetak.lap'); ?>",
+                data : {
+                    _token:token,
+                    th:th,
+                    bl:bl
+                },
+                success:function(data){
+                    window.open(data);
+                }
+            });
         });
 
 
