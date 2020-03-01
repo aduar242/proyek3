@@ -20,7 +20,7 @@
             	<div class="row">
                     <div class="col-md-3">
                         <select class="form-control" id="bulan">
-                            <option>Bulan</option>
+                            <option>Bulan Ini</option>
                             <option value="01">Januari</option>
                             <option value="02">Februari</option>
                             <option value="03">Maret</option>
@@ -36,8 +36,8 @@
 
                         </select>
                     </div>
-            		<div class="col-md-1">
-            			<input style="max-width: 100px;" class="form-control date-picker" type="text" id="tahun" placeholder="Tahun">
+            		<div class="col-md-2">
+            			<input style="max-width: 200px;" class="form-control date-picker" type="text" id="tahun" placeholder="Tahun">
             		</div>
             		<div class="col-md-3">
             			<button class="btn btn-lg btn-primary" id="cari">Cari</button>
