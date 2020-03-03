@@ -93,7 +93,7 @@
             icon: 'img/sdhBayar.png',
             @endif
             infoWindow: {
-                content : '<h3>{{$d->nama}}</h3><p>{{$d->lat}}</p><p>{{$d->long}}</p>'
+                content : '<h1>{{$d->nama}}</h1><br>Paket : {{$d->paket->nama}}<br>Masa Kadaluarsa : {{$d->masa_kadaluwarsa}}'
             }
         });
         

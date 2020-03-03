@@ -20,7 +20,7 @@
                     @else
                     <a href="{{ route('paket')}}">
                         @endif
-                    <i class="metismenu-icon pe-7s-display2"></i>
+                    <i class="metismenu-icon pe-7s-plugin"></i>
                     Data Paket
                 </a>
             </li>
@@ -30,11 +30,11 @@
                     @else
                     <a href="{{ route('client')}}">
                         @endif
-                    <i class="metismenu-icon pe-7s-display2"></i>
+                    <i class="metismenu-icon pe-7s-users"></i>
                     Data Client
                 </a>
             </li>
-            <li class="app-sidebar__heading">Manajemen User</li>
+            {{-- <li class="app-sidebar__heading">Manajemen User</li>
             <li>
                 @if(URL::current() == URL::route('user'))
                 <a href="{{ route('user')}}" class="mm-active">
@@ -54,24 +54,24 @@
                     <i class="metismenu-icon pe-7s-display2"></i>
                     Data Role
                 </a>
-            </li>
+            </li> --}}
             <li class="app-sidebar__heading">Manajemen Mapping</li>
             <li>
-                <a href="{{ route('homemap')}}">
+                <a target="_blank" href="{{ route('homemap')}}">
                         <i class="metismenu-icon pe-7s-map-2"></i>
                         Map
                     </a>
                 </li>
-            <li>
+            {{-- <li>
             <a href="{{ route('map')}}">
                     <i class="metismenu-icon pe-7s-map-2"></i>
                     Data mapping
                 </a>
-            </li>
+            </li> --}}
             <li>
                 <a href="{{ route('setting')}}">
-                        <i class="metismenu-icon pe-7s-map-2"></i>
-                        Setting
+                        <i class="metismenu-icon pe-7s-map"></i>
+                        Pengaturan Map
                     </a>
                 </li>
             <li class="app-sidebar__heading">Laporan</li>

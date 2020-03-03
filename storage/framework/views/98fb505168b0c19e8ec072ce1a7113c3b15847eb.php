@@ -1,6 +1,8 @@
 <div class="app-header header-shadow">
     <div class="app-header__logo">
-    <div class="logo-src"><img src="<?php echo e(asset('/dashboard/assets/images/logo-tole-wifi.png')); ?>" style="width: 140px;height: auto;"/></div>
+    <div class="logo-src">
+        <img src="<?php echo e(asset('/dashboard/assets/images/logo-tole-wifi.png')); ?>" style="width: 140px;height: auto;"/>
+    </div>
         <div class="header__pane ml-auto">
             <div>
                 <button type="button" class="hamburger close-sidebar-btn hamburger--elastic" data-class="closed-sidebar">
@@ -31,30 +33,24 @@
     </div>
     <div class="app-header__content">
         <div class="app-header-left">
-            <div class="search-wrapper">
-                <div class="input-holder">
-                    <input type="text" class="search-input" placeholder="Type to search">
-                    <button class="search-icon"><span></span></button>
-                </div>
-                <button class="close"></button>
-            </div>
+            
             <ul class="header-menu nav">
                 <li class="nav-item">
-                    <a href="javascript:void(0);" class="nav-link">
+                    <a href="<?php echo e(route('home')); ?>" class="nav-link">
                         <i class="nav-link-icon fa fa-database"> </i>
                         Statistics
                     </a>
                 </li>
                 <li class="btn-group nav-item">
-                    <a href="javascript:void(0);" class="nav-link">
-                        <i class="nav-link-icon fa fa-edit"></i>
-                        Projects
+                    <a href="<?php echo e(route('client')); ?>" class="nav-link">
+                        <i class="nav-link-icon fa fa-user"></i>
+                        Client List
                     </a>
                 </li>
                 <li class="dropdown nav-item">
-                    <a href="javascript:void(0);" class="nav-link">
+                    <a href="<?php echo e(route('setting')); ?>" class="nav-link">
                         <i class="nav-link-icon fa fa-cog"></i>
-                        Settings
+                        Pengaturan Map
                     </a>
                 </li>
             </ul>

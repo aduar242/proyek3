@@ -20,7 +20,7 @@
                     <?php else: ?>
                     <a href="<?php echo e(route('paket')); ?>">
                         <?php endif; ?>
-                    <i class="metismenu-icon pe-7s-display2"></i>
+                    <i class="metismenu-icon pe-7s-plugin"></i>
                     Data Paket
                 </a>
             </li>
@@ -30,48 +30,23 @@
                     <?php else: ?>
                     <a href="<?php echo e(route('client')); ?>">
                         <?php endif; ?>
-                    <i class="metismenu-icon pe-7s-display2"></i>
+                    <i class="metismenu-icon pe-7s-users"></i>
                     Data Client
                 </a>
             </li>
-            <li class="app-sidebar__heading">Manajemen User</li>
-            <li>
-                <?php if(URL::current() == URL::route('user')): ?>
-                <a href="<?php echo e(route('user')); ?>" class="mm-active">
-                    <?php else: ?>
-                    <a href="<?php echo e(route('user')); ?>">
-                        <?php endif; ?>
-                    <i class="metismenu-icon pe-7s-display2"></i>
-                    Data User
-                </a>
-            </li>
-            <li>
-                <?php if(URL::current() == URL::route('role')): ?>
-                <a href="<?php echo e(route('role')); ?>" class="mm-active">
-                    <?php else: ?>
-                    <a href="<?php echo e(route('role')); ?>">
-                        <?php endif; ?>
-                    <i class="metismenu-icon pe-7s-display2"></i>
-                    Data Role
-                </a>
-            </li>
+            
             <li class="app-sidebar__heading">Manajemen Mapping</li>
             <li>
-                <a href="<?php echo e(route('homemap')); ?>">
+                <a target="_blank" href="<?php echo e(route('homemap')); ?>">
                         <i class="metismenu-icon pe-7s-map-2"></i>
                         Map
                     </a>
                 </li>
-            <li>
-            <a href="<?php echo e(route('map')); ?>">
-                    <i class="metismenu-icon pe-7s-map-2"></i>
-                    Data mapping
-                </a>
-            </li>
+            
             <li>
                 <a href="<?php echo e(route('setting')); ?>">
-                        <i class="metismenu-icon pe-7s-map-2"></i>
-                        Setting
+                        <i class="metismenu-icon pe-7s-map"></i>
+                        Pengaturan Map
                     </a>
                 </li>
             <li class="app-sidebar__heading">Laporan</li>
