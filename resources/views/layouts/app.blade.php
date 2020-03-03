@@ -14,6 +14,7 @@
     <meta name="msapplication-tap-highlight" content="no">
     <link href="{{ asset('dashboard/main.css')}}" rel="stylesheet">
     <link href="{{ asset('bootstrap-datepicker/css/bootstrap-datepicker.min.css')}}" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="{{ asset('datatables/datatables.min.css')}}">
     <script src="https://maps.googleapis.com/maps/api/js?key={{$gmaps_api_key}}"></script>
     <script src="{{asset('js/gmaps.js')}}"></script>
     <style type="text/css">
@@ -92,6 +93,7 @@
 <script type="text/javascript" src="{{ asset('js/rupiah.js')}}"></script>
 <script type="text/javascript" src="{{ asset('dashboard/assets/scripts/main.js')}}"></script>
 <script type="text/javascript" src="{{ asset('bootstrap-datepicker/js/bootstrap-datepicker.min.js')}}"></script>
+<script type="text/javascript" src="{{ asset('datatables/datatables.min.js')}}"></script>
 
 
 @yield('script')

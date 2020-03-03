@@ -72,8 +72,42 @@ class HomeController extends Controller
         $transaksi = Hclient::whereMonth('created_at',$month)->count();
         $total = Hclient::all()->count();
         $client = Client::with('paket')->get();
+        // total bulan ini
+        $month= date("m");
+
+        $year = date("Y");
+
+        $paket = Paket::all();
+
+        $clie = Hclient::whereMonth('created_at',$month)
+            ->whereYear('created_at',$year)
+            ->get();
+        $total_m=0;
+        foreach($paket as $p){
+            $jum =0;
+            foreach($clie as $c){
+                if($p->id==$c->id_paket){
+                    $jum++;
+                }
+            }
+            $subtotal = $jum*$p->harga;
+            $total_m+=$subtotal;
+        }
+        // total semua
+        $clie = Hclient::get();
+        $total_a=0;
+        foreach($paket as $p){
+            $jum =0;
+            foreach($clie as $c){
+                if($p->id==$c->id_paket){
+                    $jum++;
+                }
+            }
+            $subtotal = $jum*$p->harga;
+            $total_a+=$subtotal;
+        }
     
-        return view('home',compact('client','total','transaksi'));
+        return view('home',compact('client','total','transaksi','total_m','total_a'));
     }
 
     public function ingatkan(){

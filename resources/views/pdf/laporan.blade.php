@@ -11,7 +11,7 @@
 		}
 	</style>
 	<center>
-		<h5>Laporan Transaksi Bulan Februari</h4>
+		<h5>{{$data}}</h4>
 	</center>
  
 	<table class='table table-bordered'>
@@ -41,7 +41,6 @@
                 <td>{{$lap->paket->nama}}</td>
                 <td>{{$lap->masa_aktif}}</td>
                 <td>{{$lap->masa_kadaluwarsa}}</td>
-                <td></td>
             </tr>
             @php
             $no++;

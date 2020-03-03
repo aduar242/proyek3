@@ -83,7 +83,18 @@
                         @endif
                     <i class="metismenu-icon pe-7s-display2">
                     </i>
-                    Laporan Pelanggan
+                    Laporan Transaksi
+                </a>
+            </li>
+            <li>
+                @if(URL::current() == URL::route('lap.keuangan'))
+                <a href="{{ route('lap.keuangan')}}" class="mm-active">
+                    @else
+                        <a href="{{ route('lap.keuangan')}}">
+                        @endif
+                    <i class="metismenu-icon pe-7s-display2">
+                    </i>
+                    Laporan Keuangan
                 </a>
             </li>
             @endrole

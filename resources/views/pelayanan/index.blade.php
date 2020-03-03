@@ -18,7 +18,8 @@
             <div class="card-body">
             	<h5 class="card-title">Pelayanan</h5>
             	<br>
-                <table class="mb-0 table">
+                <div class="table-responsive" style="width: 100%;">
+                <table class="mb-0 table datatable" style="width: 100%;">
                     <thead>
                     <tr>
                         <th>Nama</th>
@@ -43,6 +44,7 @@
                     </tbody>
                 </table>
             </div>
+            </div>
         </div>
     </div>
 </div>
@@ -56,7 +58,9 @@ $(document).ready(function(){
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });       
-
+        $(".datatable").DataTable({
+            "ordering":false
+        });
 
     });
 </script>

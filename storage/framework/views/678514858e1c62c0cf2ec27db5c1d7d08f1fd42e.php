@@ -92,6 +92,34 @@
 	</div>
 </div>
 <div class="row">
+	<div class="col-md-6 col-xl-6">
+		<div class="card mb-3 widget-content bg-grow-early">
+			<div class="widget-content-wrapper text-white">
+				<div class="widget-content-left">
+					<div class="widget-heading">Total Pendapatan</div>
+					<div class="widget-subheading">Bulan Ini</div>
+				</div>
+				<div class="widget-content-right">
+					<div class="widget-numbers text-white"><span><?php echo e("Rp ".$total_m); ?></span></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-6 col-xl-6">
+		<div class="card mb-3 widget-content bg-grow-early">
+			<div class="widget-content-wrapper text-white">
+				<div class="widget-content-left">
+					<div class="widget-heading">Total Pendapatan</div>
+					<div class="widget-subheading">Bulan Ini</div>
+				</div>
+				<div class="widget-content-right">
+					<div class="widget-numbers text-white"><span><?php echo e("Rp ".$total_a); ?></span></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="row">
 	<div class="col-md-12">
 		<div class="main-card mb-3 card">
 			<div style="padding: 20px;">
@@ -99,8 +127,8 @@
 				<input id="token" type="hidden" name="_token" value="<?php echo e(csrf_token()); ?>">
 				<button style="float: right;" id="ingatkan" class="btn btn-primary btn-sm" type="button">Ingatkan</button>
 			</div>
-			<div class="table-responsive">
-				<table class="align-middle mb-0 table table-borderless table-striped table-hover">
+			<div class="table-responsive" style="padding: 20px">
+				<table class="align-middle mb-0 table datatable" style="width: 100%;">
 					<thead>
 						<tr>
 							<th>#</th>
@@ -170,6 +198,9 @@
             });
 
      	});
+     	$(".datatable").DataTable({
+          "ordering":false
+        });
 
     });
 </script>
