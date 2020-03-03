@@ -9,6 +9,7 @@ use App\paket;
 use DB;
 use DateTime;
 use File;
+use Response,Redirect;
 use PDF;
 
 class LaporanController extends Controller
@@ -78,11 +79,100 @@ class LaporanController extends Controller
 			->whereYear('created_at',$year)
 			->orderby('created_at','DESC')
 			->get();
-			$data = "Laporan Bulan ".$month." Tahun ".$year; 
+			$data = "Laporan Transaksi Bulan ".$month." Tahun ".$year; 
 
 	        $namapdf = 'pdf/'.$data.'.pdf';
+	        File::delete($namapdf);
+	        $pdf = PDF::loadview('pdf/laporan',compact('laporan','data'));
 
-	        $pdf = PDF::loadview('pdf/laporan',compact('laporan'));
+	        $pdf->save($namapdf);
+	        
+	        // $file = "aaaa";
+	        
+	        return $namapdf;
+    	}
+    }
+
+    public function keuangan(){
+    	$month = date("m");
+		$year = date("Y");
+		$paket = Paket::all();
+		$client = Hclient::whereMonth('created_at',$month)
+			->whereYear('created_at',$year)
+			->get();
+
+		
+		return view('laporan.keuangan',compact('paket','client'));
+    }
+
+    public function ubahk(Request $request){
+    	if ($request->ajax()) {
+
+	    	$month= $request->bl;
+
+			$year = $request->th;
+
+			$paket = Paket::all();
+
+			$client = Hclient::whereMonth('created_at',$month)
+    			->whereYear('created_at',$year)
+    			->get();
+
+    		$no=1; 
+    		$alltotal=0;
+    		$tr = '<!-- Table -->';
+
+            foreach($paket as $p){
+                $total =0;
+                foreach($client as $c){
+                    if($p->id==$c->id_paket){
+                        $total++;
+                    }
+                }
+                $subtotal = $total*$p->harga; 
+                $tr .= '<tr>
+                    <td>'.$no.'</td>
+                    <td>'.$p->nama.'</td>
+                    <td>'.$total.'</td>
+                    <td> Rp '.$subtotal.'</td>
+                </tr>';
+                $alltotal+=$subtotal; 
+                $no++;
+            }
+
+            $alltotal = "Rp ".$alltotal;
+
+            // return $alltotal;
+	       	return Response::json(array(
+	       		'tr'=>$tr,
+	       		'alltotal'=>$alltotal
+			));
+    	}        
+    }
+
+    public function cetakkeu(Request $request){
+    	if ($request->ajax()) {
+
+    		if($request->bl==00){
+    			$month = date("m");
+    		}else{
+    			$month = $request->bl;
+    		}
+
+			$year  = $request->th;
+
+			$paket = Paket::get();
+			$client = Hclient::whereMonth('created_at',$month)
+				->whereYear('created_at',$year)
+				->get();
+
+		
+
+			$data = "Laporan Keuangan Bulan ".$month." Tahun ".$year; 
+
+	        $namapdf = 'pdf/'.$data.'.pdf';
+	        File::delete($namapdf);
+	        $pdf = PDF::loadview('pdf/keuangan',compact('client','paket','data'));
 
 	        $pdf->save($namapdf);
 	        

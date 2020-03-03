@@ -15,7 +15,7 @@
     <div class="col-lg-12">
         <div class="main-card mb-3 card">
             <div class="card-body"><h5 class="card-title">Simple table</h5>
-                <table class="mb-0 table">
+                <table class="mb-0 table datatable">
                     <thead>
                     <tr>
                         <th>No</th>
@@ -187,11 +187,8 @@
                 alert('You clicked in this marker');
             }
         });
-
     },
 });
-</script>
-<script>
     function getval(sel){
         var kecamatan = sel.value;
         $.ajax({
@@ -210,7 +207,18 @@
         });
         console.log(kecamatan);
     }
-    
+$(document).ready(function(){
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        
+    $(".datatable").DataTable({
+        "ordering":false
+    });
+
+});
 </script>   
 <?php $__env->stopSection(); ?>
 

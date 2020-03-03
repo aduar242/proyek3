@@ -14,6 +14,7 @@
     <meta name="msapplication-tap-highlight" content="no">
     <link href="<?php echo e(asset('dashboard/main.css')); ?>" rel="stylesheet">
     <link href="<?php echo e(asset('bootstrap-datepicker/css/bootstrap-datepicker.min.css')); ?>" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="<?php echo e(asset('datatables/datatables.min.css')); ?>">
     <script src="https://maps.googleapis.com/maps/api/js?key=<?php echo e($gmaps_api_key); ?>"></script>
     <script src="<?php echo e(asset('js/gmaps.js')); ?>"></script>
     <style type="text/css">
@@ -92,6 +93,7 @@
 <script type="text/javascript" src="<?php echo e(asset('js/rupiah.js')); ?>"></script>
 <script type="text/javascript" src="<?php echo e(asset('dashboard/assets/scripts/main.js')); ?>"></script>
 <script type="text/javascript" src="<?php echo e(asset('bootstrap-datepicker/js/bootstrap-datepicker.min.js')); ?>"></script>
+<script type="text/javascript" src="<?php echo e(asset('datatables/datatables.min.js')); ?>"></script>
 
 
 <?php echo $__env->yieldContent('script'); ?>

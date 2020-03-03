@@ -70,6 +70,9 @@ Route::resource('/lap', 'LaporanController');
 Route::get('/lap','LaporanController@show')->name('lap');
 Route::post('/lap/ubah','LaporanController@ubah')->name('ubah.lap');
 Route::post('/lap/cetak','LaporanController@cetak')->name('cetak.lap');
+Route::get('/keuangan','LaporanController@keuangan')->name('lap.keuangan');
+Route::post('/keuangan-ubah','LaporanController@ubahk')->name('ubah.keu');
+Route::post('/keu-cetak','LaporanController@cetakkeu')->name('cetak.keu');
 //end route
 // Start route pelayanan
 Route::resource('/pelayanan','PelayananController');

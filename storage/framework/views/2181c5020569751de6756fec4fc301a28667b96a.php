@@ -83,7 +83,18 @@
                         <?php endif; ?>
                     <i class="metismenu-icon pe-7s-display2">
                     </i>
-                    Laporan Pelanggan
+                    Laporan Transaksi
+                </a>
+            </li>
+            <li>
+                <?php if(URL::current() == URL::route('lap.keuangan')): ?>
+                <a href="<?php echo e(route('lap.keuangan')); ?>" class="mm-active">
+                    <?php else: ?>
+                        <a href="<?php echo e(route('lap.keuangan')); ?>">
+                        <?php endif; ?>
+                    <i class="metismenu-icon pe-7s-display2">
+                    </i>
+                    Laporan Keuangan
                 </a>
             </li>
             <?php endif; ?>

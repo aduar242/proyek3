@@ -4,7 +4,7 @@
 </i>
 @endsection
 @section('judulPage')
-    Laporan Transaksi
+    Laporan Keuangan
 @endsection
 @section('deskripsiPage')
     Per bulan
@@ -16,7 +16,7 @@
     <div class="col-lg-12">
         <div class="main-card mb-3 card">
             <div class="card-body">
-            	<h5 class="card-title">Laporan Transaksi</h5>
+            	<h5 class="card-title">Laporan Keuangan</h5>
             	<div class="row">
                     <div class="col-md-3">
                         <select class="form-control" id="bulan">
@@ -50,40 +50,43 @@
             	</div>
             	<br>
                 <div class="table-responsive" style="width: 100%;">
-                <table class="mb-0 table datatable" id="cek" style="width: 100%;">
-                    <thead>
-                    <tr>
-                        <th>No</th>
-                        <th>Invoice</th>
-                        <th>Tanggal Transaksi</th>
-                        <th>Paket</th>
-                        <th>Masa Aktif</th>
-                        <th>Masa Kadaluwarsa</th>
-                    </tr>
-                    </thead>
-                    <tbody id="body-t">
-                        @php
-                        $no = 1;
-                        @endphp
-                        @foreach($laporan as $lap)
+                    <table class="mb-0 table datatable" style="width: 100%;">
+                        <thead>
                         <tr>
-                            <td>{{$no}}</td>
-                            <td>{{$lap->invoice}}</td>
-                            @php
-                                $tanggal = new DateTime($lap->created_at);
-                                $tanggal = $tanggal->Format("d-m-Y");
-                            @endphp
-                            <td>{{$tanggal}}</td>
-                            <td>{{$lap->paket->nama}}</td>
-                            <td>{{$lap->masa_aktif}}</td>
-                            <td>{{$lap->masa_kadaluwarsa}}</td>
+                            <th>No</th>
+                            <th>Paket</th>
+                            <th>Total Transaksi</th>
+                            <th>Sub total</th>
                         </tr>
-                        @php
-                        $no++;
-                        @endphp
-                        @endforeach
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody id="body-t">
+                            @php $no=1; $alltotal=0;@endphp
+                            @foreach($paket as $p)
+                                @php $total =0; @endphp
+                                @foreach($client as $c)
+                                    @php
+                                    if($p->id==$c->id_paket){
+                                        $total++;
+                                    }
+                                    @endphp
+                                @endforeach
+                                <tr>
+                                    <td>{{$no}}</td>
+                                    <td>{{$p->nama}}</td>
+                                    <td>{{$total}}</td>
+                                    @php $subtotal = $total*$p->harga @endphp
+                                    <td>{{"Rp ".$subtotal}}</td>
+                                </tr>
+                                @php $alltotal+=$subtotal; $no++; @endphp
+                            @endforeach
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <th colspan="3">Total</th>
+                                <th id="t-foot">{{"Rp ".$alltotal}}</th>
+                            </tr>
+                        </tfoot>
+                    </table>
                 </div>
             </div>
         </div>
@@ -110,15 +113,19 @@ $(document).ready(function(){
             var bl = $("#bulan").val();
             var token = $("input[nama='_token']").val();
             $.ajax({
-                type : "post",
-                url  : "<?php echo route('ubah.lap'); ?>",
+                type : "POST",
+                url  : "<?php echo route('ubah.keu'); ?>",
                 data : {
                     _token:token,
                     th:th,
                     bl:bl
                 },
                 success:function(data){
-                    $("#body-t").html(data);
+                    $("#body-t").html(data.tr);
+                    $("#t-foot").html(data.alltotal);
+                },
+                error:function(data){
+                    console.log(data);
                 }
             });
         });
@@ -129,7 +136,7 @@ $(document).ready(function(){
             var token = $("input[nama='_token']").val();
             $.ajax({
                 type : "post",
-                url  : "<?php echo route('cetak.lap'); ?>",
+                url  : "<?php echo route('cetak.keu'); ?>",
                 data : {
                     _token:token,
                     th:th,
@@ -137,12 +144,15 @@ $(document).ready(function(){
                 },
                 success:function(data){
                     window.open(data);
+                },
+                error:function(data){
+                    console.log(data);
                 }
             });
         });
 
         $(".datatable").DataTable({
-            "ordering":false
+          "ordering":false
         });
 
 
