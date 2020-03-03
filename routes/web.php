@@ -13,7 +13,7 @@
 
 Route::get('/','HomeController@index')->name('homemap');
 Route::get('/email', function () {
-    return view('email/email');
+    return view('email/invoiceEmail');
 });
 
 Auth::routes();

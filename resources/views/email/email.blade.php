@@ -26,11 +26,11 @@
 										<!-- logo -->
 										<table width="50%" cellspacing="0" cellpadding="0" border="0" align="left">
 											<tbody><tr>
-												<td class="editable-img" align="left">
+												<!-- <td class="editable-img" align="left">
 													<a href="#">
 														<img editable="true" mc:edit="image001" src="http://castellab.com/emails/notificationapp/images/logo-text.png" style="display:block; line-height:0; font-size:0; border:0;" alt="logo" width="68" border="0">
 													</a>
-												</td>
+												</td> -->
 											</tr>
 											<tr><td height="22"></td></tr>
 										</tbody></table><!-- END logo -->
@@ -40,11 +40,11 @@
 											<!-- margin-top -->
 											<tbody><tr><td height="3"></td></tr>
 											<tr>
-												<td align="right">
+												<!-- <td align="right">
 													<a href="#" style="border-style: none !important; display: block; border: 0 !important;" class="editable-img">
 														<img editable="true" mc:edit="image002" src="http://castellab.com/emails/notificationapp/images/options.png" style="display:block; line-height:0; font-size:0; border:0;" alt="options" border="0">
 													</a>
-												</td>
+												</td> -->
 											</tr>
 										</tbody></table><!-- END options -->
 	
@@ -57,7 +57,7 @@
 								<tr>
 									<td align="center">
 										<div class="editable-img">
-											<img editable="true" mc:edit="image003" src="http://castellab.com/emails/notificationapp/images/circle-icon-person.png" style="display:block; line-height:0; font-size:0; border:0;" alt="" border="0">
+											<img editable="true" mc:edit="image003" src="https://1.bp.blogspot.com/-3G9cWfgkkH4/XkEQKdPVorI/AAAAAAAAHPo/G_pMLtLytvEFDA_wQK4MUvbuLL_0Oa7ngCLcBGAsYHQ/s320/logo-email-tole-wifi.png" style="display:block; line-height:0; font-size:0; border:0;" alt="" border="0">
 										</div>
 									</td>
 								</tr>
@@ -70,7 +70,7 @@
 										<div class="editable-text">
 											<span class="text_container">
 												<multiline>
-													Activate Your Account
+													Masa aktif Paket akan segera habis
 												</multiline>
 											</span>
 										</div>
@@ -85,7 +85,6 @@
 										<div class="editable-text">
 											<span class="text_container">
 												<multiline>
-													8 Dec, 2015
 												</multiline>
 											</span>
 										</div>
@@ -116,7 +115,7 @@
 										<div class="editable-text" style="line-height: 2;">
 											<span class="text_container">
 												<multiline>
-													You are ready to setup your new NotificationApp account. Click the button below to...
+													Masa aktif paket anda akan habis silahkan untuk memperjang masa aktif paket agar dapat menikmati layanan kami lebih lama lagi
 												</multiline>
 											</span>
 										</div>
@@ -128,7 +127,7 @@
 								<tr>
 									<td align="center">
 										<!-- button -->
-										<table class="button_bg_color_303f9f bg_color_303f9f" style="background-color:#303f9f; border-radius:3px;" width="225" height="50" cellspacing="0" cellpadding="0" border="0" bgcolor="#303f9f" align="center">
+										<!-- <table class="button_bg_color_303f9f bg_color_303f9f" style="background-color:#303f9f; border-radius:3px;" width="225" height="50" cellspacing="0" cellpadding="0" border="0" bgcolor="#303f9f" align="center">
 											<tbody><tr>
 												<td mc:edit="text004" style="color: #ffffff; font-size: 16px; font-weight: 600; font-family: lato, Helvetica, sans-serif; mso-line-height-rule: exactly;" class="text_color_ffffff" valign="middle" align="center">
 													<div class="editable-text">
@@ -140,7 +139,7 @@
 													</div>
 												</td>
 											</tr>
-										</tbody></table><!-- END button -->
+										</tbody></table> --><!-- END button -->
 									</td>
 								</tr>
 	
@@ -148,7 +147,7 @@
 								<tr><td height="25"></td></tr>
 	
 								<tr>
-									<td mc:edit="text005" class="text_color_282828" style="color: #282828; font-size: 15px;font-style: italic; line-height: 2; font-weight: 500; font-family: lato, Helvetica, sans-serif; mso-line-height-rule: exactly;" align="center">
+									<!-- <td mc:edit="text005" class="text_color_282828" style="color: #282828; font-size: 15px;font-style: italic; line-height: 2; font-weight: 500; font-family: lato, Helvetica, sans-serif; mso-line-height-rule: exactly;" align="center">
 										<div class="editable-text" style="line-height: 2;">
 											<span class="text_container">
 												<multiline>
@@ -156,7 +155,7 @@
 												</multiline>
 											</span>
 										</div>
-									</td>
+									</td> -->
 								</tr>
 							</tbody></table><!-- END container_400 -->
 						</td>
@@ -179,7 +178,8 @@
 						<td>
 							<!--  column-1 -->
 							<table class="table1-2" width="350" cellspacing="0" cellpadding="0" border="0" align="left">
-								<tbody><tr>
+								<tbody>
+								<!-- <tr>
 									<td mc:edit="text006" class="center_content text_color_929292" style="color: #929292; font-size: 14px; line-height: 2; font-weight: 400; font-family: lato, Helvetica, sans-serif; mso-line-height-rule: exactly;" align="left">
 										<div class="editable-text" style="line-height: 2;">
 											<span class="text_container">
@@ -189,12 +189,12 @@
 											</span>
 										</div>
 									</td>
-								</tr>
+								</tr> -->
 	
 								<!-- horizontal gap -->
 								<tr><td height="20"></td></tr>
 	
-								<tr>
+								<!-- <tr>
 									<td mc:edit="text007" class="center_content" style="font-size: 14px;font-weight: 400; font-family: lato, Helvetica, sans-serif; mso-line-height-rule: exactly;" align="left">
 										<div class="editable-text">
 											<span class="text_container">
@@ -204,12 +204,12 @@
 											</span>
 										</div>
 									</td>
-								</tr>
+								</tr> -->
 	
 								<!-- horizontal gap -->
 								<tr><td height="10"></td></tr>
 	
-								<tr>
+								<!-- <tr>
 									<td mc:edit="text008" class="center_content" style="font-size: 14px;font-weight: 400; font-family: lato, Helvetica, sans-serif; mso-line-height-rule: exactly;" align="left">
 										<div class="editable-text">
 											<span class="text_container">
@@ -219,7 +219,7 @@
 											</span>
 										</div>
 									</td>
-								</tr>
+								</tr> -->
 	
 								<!-- margin-bottom -->
 								<tr><td height="30"></td></tr>
@@ -236,32 +236,31 @@
 									<td>
 										<table style="margin: 0 auto;" width="120" align="center">
 											<tbody><tr>
-												<!-- facebook -->
-												<td width="30" align="center">
+												<!-- <td width="30" align="center">
 													<a href="#" style="border-style: none !important; display: inline-block;; border: 0 !important;" class="editable-img">
 														<img editable="true" mc:edit="image004" src="http://castellab.com/emails/notificationapp/images/icon-fb.png" style="display:block; line-height:0; font-size:0; border:0;" alt="" width="30" border="0">
 													</a>
-												</td>
+												</td> -->
 	
-												<!-- vertical gap -->
+												
 												<td width="15"></td>
 	
-												<!-- twitter -->
-												<td width="30" align="center">
+												
+												<!-- <td width="30" align="center">
 													<a href="#" style="border-style: none !important; display: inline-block; border: 0 !important;" class="editable-img">
 														<img editable="true" mc:edit="image005" src="http://castellab.com/emails/notificationapp/images/icon-twitter.png" style="display:block; line-height:0; font-size:0; border:0;" alt="" width="30" border="0">
 													</a>
-												</td>
+												</td> -->
 	
-												<!-- vertical gap -->
+												
 												<td width="15"></td>
 	
-												<!-- google+ -->
-												<td width="30" align="center">
+												
+												<!-- <td width="30" align="center">
 													<a href="#" style="border-style: none !important; display: inline-block;; border: 0 !important;" class="editable-img">
 														<img editable="true" mc:edit="image006" src="http://castellab.com/emails/notificationapp/images/icon-gp.png" style="display:block; line-height:0; font-size:0; border:0;" alt="" width="30" border="0">
 													</a>
-												</td>
+												</td> -->
 											</tr>
 										</tbody></table>
 									</td>
