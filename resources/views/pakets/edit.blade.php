@@ -14,10 +14,10 @@
                     {{-- @php
                         dd($clients);
                     @endphp --}}
-                    {{ csrf_field() }}
                     <input type="hidden" name="_method" value="POST">
-                        <div class="position-relative form-group"><label for="exampleNama" class="">Nama</label><input name="nama" id="exampleNama" value="{{ $pakets->nama }}" type="string" class="form-control {{ $errors->has('nama') ? 'is-invalid':'' }}"></div>
-                        <div class="position-relative form-group"><label for="exampleHarga" class="">Harga</label><input name="harga" id="exampleNama" value="{{ $pakets->harga }}" type="number" class="form-control {{ $errors->has('harga') ? 'is-invalid':'' }}"></div>
+                    {{ csrf_field() }}
+                        <div class="position-relative form-group"><label for="nama" class="">Nama</label><input name="nama" id="nama" value="{{ $pakets->nama }}" type="string" class="form-control {{ $errors->has('nama') ? 'is-invalid':'' }}"></div>
+                        <div class="position-relative form-group"><label for="harga" class="">Harga</label><input name="harga" id="harga" value="{{ $pakets->harga }}" type="number" class="form-control {{ $errors->has('harga') ? 'is-invalid':'' }}"></div>
                         <button class="mt-1 btn btn-primary">Simpan</button>
                         <a href="{{ route('paket')}}" 
                             class="mt-1 btn btn-danger">

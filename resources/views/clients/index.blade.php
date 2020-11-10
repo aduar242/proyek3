@@ -22,6 +22,7 @@
                         <th>No</th>
                         <th>Name</th>
                         <th>Paket</th>
+                        <th>Harga Paket</th>
                         <th>Masa Aktif</th>
                         <th>Masa Kadaluwar</th>
                         <th class="text-right">Action</th>
@@ -34,6 +35,7 @@
                         <th scope="client">{{$no++}}</th>
                         <td>{{ ucfirst($client->nama)}}</td>
                         <td>{{$client->paket['nama']}}</td>
+                        <td>@currency($client->paket['harga'])</td>
                         <td>{{$client->masa_aktif}}</td>
                         <td>{{$client->masa_kadaluwarsa}}</td>
                         <td class="text-right">
@@ -43,35 +45,10 @@
                                 <button class="mb-1 mr-1 btn-transition btn btn-outline-success"><i class="pe-7s-id"></i> Edit
                                 </button>
                             </a>
-                            <button class="mb-1 mr-1 btn-transition btn btn-outline-danger" data-toggle="modal" data-target="#exampleModal"><i class="pe-7s-trash"></i> Hapus
+                            <button class="mb-1 mr-1 btn-transition btn btn-outline-danger" data-toggle="modal" data-target="#exampleModal{{$client->id}}"><i class="pe-7s-trash"></i> Hapus
                             </button>
                         </td>
                     </tr>
-                    @section('modalHapus')
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Data ini akan di hapus</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <p class="mb-0">Anda yakin ingin menghapus data ini {{$client->id}}</p>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-primary" data-dismiss="modal">Batal</button>
-                            <form action="{{ route('client.destroy', $client->id) }}" method="POST">
-                                {{ method_field('delete') }}
-                                @csrf
-                                <a href="{{ route('client.destroy', $client->id) }}">
-                                <input type="hidden" name="_method" value="DELETE">
-                                <button type="button" class="btn btn-danger">Hapus</button>
-                                </a>
-                            </form>
-                            
-                        </div>
-                    </div>
-                    @endsection
                         @endforeach
                     </tbody>
                 </table>
@@ -105,7 +82,7 @@
                             <div class="position-relative form-group"><label for="exampleSelect" class="">Paket</label><select name="id_paket" id="id_paket" class="form-control" {{ $errors->has('id_paket') ? 'is-invalid':'' }}>
                                 <option value="">Pilih :</option>
                                 @foreach ($pakets as $paket)
-                                    <option value="{{$paket->id}}">{{ ucfirst($paket->nama) }}</option>
+                                    <option value="{{$paket->id}}">{{ ucfirst($paket->nama) }} - @currency($paket->harga)</option>
                                 @endforeach
                             </select></div>
                             <div class="row">
@@ -206,3 +183,4 @@
     
 </script>   
 @endsection
+@extends('clients.modal')

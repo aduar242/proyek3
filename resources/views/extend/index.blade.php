@@ -45,7 +45,7 @@
                 <div class="col-sm-10">
                     @foreach($paket as $pk)
                         @if($cl->id_paket==$pk->id)
-                            <input class="form-control" type="number" name="harga" id="harga" value="{{$pk->harga}}">
+                            <input class="form-control" type="number" name="harga" id="harga" value="{{$pk->harga}}" readonly>
                         @endif
                     @endforeach
                 </div>

@@ -57,7 +57,7 @@
 								<tr>
 									<td align="center">
 										<div class="editable-img">
-											<img editable="true" mc:edit="image003" src="https://1.bp.blogspot.com/-3G9cWfgkkH4/XkEQKdPVorI/AAAAAAAAHPo/G_pMLtLytvEFDA_wQK4MUvbuLL_0Oa7ngCLcBGAsYHQ/s320/logo-email-tole-wifi.png" style="display:block; line-height:0; font-size:0; border:0;" alt="" border="0">
+											<img editable="true" mc:edit="image003" src="https://1.bp.blogspot.com/-O5U1o4w468I/Xl7r4bgWZnI/AAAAAAAAHYI/2JLG0MlVi5wVJPiXSZnPCeQCwdWuZQazgCLcBGAsYHQ/s320/logo-email-tole-wifi2.png" style="display:block; line-height:0; font-size:0; border:0;" alt="" border="0">
 										</div>
 									</td>
 								</tr>

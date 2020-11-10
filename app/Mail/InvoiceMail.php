@@ -33,7 +33,7 @@ class InvoiceMail extends Mailable
     {
         {
         return $this->from('tolewife@tolewifi.com')
-                    ->view('email/email')
+                    ->view('email/invoiceEmail')
                     ->with(
                     [
                         'nama' => 'Diki Alfarabi Hadi',

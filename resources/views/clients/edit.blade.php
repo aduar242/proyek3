@@ -13,24 +13,25 @@
                 <form action="{{ route('client.update', $clients->id) }}"  method="POST" enctype="multipart/form-data">
                     {{-- @php
                         dd($clients);
-                    @endphp --}}
+                    @endphp --}};
                     {{ csrf_field() }}
                     <input type="hidden" name="_method" value="POST">
                         <div class="position-relative form-group"><label for="exampleNama" class="">Nama</label><input name="nama" id="exampleNama" value="{{ $clients->nama }}" type="string" class="form-control {{ $errors->has('nama') ? 'is-invalid':'' }}"></div>
                         <div class="position-relative form-group"><label for="exampleText" class="">Deskripsi</label><input name="deskripsi" id="exampledeskripsi" value="{{ $clients->deskripsi }}" type="string" class="form-control {{ $errors->has('deskripsi') ? 'is-invalid':'' }}"></div>
                         <div class="position-relative form-group"><label for="examplePaket" class="">Desa</label><input name="desa" id="exampleDesa" value="{{ $clients->desa }}" type="string" class="form-control {{ $errors->has('desa') ? 'is-invalid':'' }}"></div>
                         <div class="position-relative form-group"><label for="exampleKecamatan" class="">Kecamatan</label><input name="kecamatan" id="exampleKecamatan" value="{{ $clients->kecamatan }}" type="string" class="form-control {{ $errors->has('kecamatan') ? 'is-invalid':'' }}"></div>
+                        <div class="position-relative form-group"><label for="exampleKecamatan" class="">Kecamatan</label><input name="lat" id="exampleKecamatan" value="{{ $clients->lat }}" type="string" class="form-control {{ $errors->has('kecamatan') ? 'is-invalid':'' }}"></div>
                         <div class="position-relative form-group">
                             <div id="map"></div>
                         </div>
-                        <div hidden class="position-relative form-group {{ $errors->has('lat') ? 'has-error' : ''}}">
+                        <div class="position-relative form-group {{ $errors->has('lat') ? 'has-error' : ''}}">
                             {!! Form::label('lat', 'Lat', ['class' => 'col-md-4 control-label']) !!}
                             <div class="col-md-6">
-                                {!! Form::text('lat', null, ['class' => 'form-control','id'=>'lat']) !!}
+                                {!! Form::text('$clients->desa', null, ['class' => 'form-control','id'=>'lat']) !!}
                                 {!! $errors->first('lat', '<p class="help-block">:message</p>') !!}
                             </div>
                         </div>
-                        <div hidden class="position-relative form-group {{ $errors->has('long') ? 'has-error' : ''}}">
+                        <div class="position-relative form-group {{ $errors->has('long') ? 'has-error' : ''}}">
                             {!! Form::label('long', 'Long', ['class' => 'col-md-4 control-label']) !!}
                             <div class="col-md-6">
                                 {!! Form::text('long', null, ['class' => 'form-control','id'=>'long']) !!}

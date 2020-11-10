@@ -29,6 +29,12 @@ class ClientController extends Controller
         return view('clients.index', compact('clients','pakets','kecamatan')); 
     }
 
+    public function modal()
+    {
+        $clients = Client::with('paket')->orderBy('created_at', 'DESC');
+        return view('clients.modal', compact('clients')); 
+    }
+
     /**
      * Show the form for creating a new resource.
      *

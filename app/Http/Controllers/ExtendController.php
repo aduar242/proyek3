@@ -57,7 +57,7 @@ class ExtendController extends Controller
         $pdf = PDF::loadview('pdf/transaksi',['client'=>$client]);
         $pdf->save($namapdf);
          // Kirim Mail
-         Mail::to($email)->send(new InvoiceMail($invoice));
+         // Mail::to($email)->send(new InvoiceMail($invoice));
          // Delete PDF
          File::delete($namapdf);
          // Return View

@@ -75,7 +75,7 @@
                                     <td>{{$p->nama}}</td>
                                     <td>{{$total}}</td>
                                     @php $subtotal = $total*$p->harga @endphp
-                                    <td>{{"Rp ".$subtotal}}</td>
+                                    <td>@currency($subtotal)</td>
                                 </tr>
                                 @php $alltotal+=$subtotal; $no++; @endphp
                             @endforeach
@@ -83,7 +83,7 @@
                         <tfoot>
                             <tr>
                                 <th colspan="3">Total</th>
-                                <th id="t-foot">{{"Rp ".$alltotal}}</th>
+                                <th id="t-foot">@currency($alltotal)</th>
                             </tr>
                         </tfoot>
                     </table>

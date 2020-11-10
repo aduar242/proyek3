@@ -15,12 +15,13 @@
     <div class="col-lg-12">
         <div class="main-card mb-3 card">
             <div class="card-body"><h5 class="card-title">Simple table</h5>
-                <table class="mb-0 table datatable">
+                <table class="mb-0 table">
                     <thead>
                     <tr>
                         <th>No</th>
                         <th>Name</th>
                         <th>Paket</th>
+                        <th>Harga Paket</th>
                         <th>Masa Aktif</th>
                         <th>Masa Kadaluwar</th>
                         <th class="text-right">Action</th>
@@ -33,6 +34,7 @@
                         <th scope="client"><?php echo e($no++); ?></th>
                         <td><?php echo e(ucfirst($client->nama)); ?></td>
                         <td><?php echo e($client->paket['nama']); ?></td>
+                        <td>Rp. <?php echo number_format($client->paket['harga'],0,',','.'); ?></td>
                         <td><?php echo e($client->masa_aktif); ?></td>
                         <td><?php echo e($client->masa_kadaluwarsa); ?></td>
                         <td class="text-right">
@@ -42,36 +44,10 @@
                                 <button class="mb-1 mr-1 btn-transition btn btn-outline-success"><i class="pe-7s-id"></i> Edit
                                 </button>
                             </a>
-                            <button class="mb-1 mr-1 btn-transition btn btn-outline-danger" data-toggle="modal" data-target="#exampleModal"><i class="pe-7s-trash"></i> Hapus
+                            <button class="mb-1 mr-1 btn-transition btn btn-outline-danger" data-toggle="modal" data-target="#exampleModal<?php echo e($client->id); ?>"><i class="pe-7s-trash"></i> Hapus
                             </button>
                         </td>
                     </tr>
-                    <?php $__env->startSection('modalHapus'); ?>
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Data ini akan di hapus</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <p class="mb-0">Anda yakin ingin menghapus data ini <?php echo e($client->id); ?></p>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-primary" data-dismiss="modal">Batal</button>
-                            <form action="<?php echo e(route('client.destroy', $client->id)); ?>" method="POST">
-                                <?php echo e(method_field('delete')); ?>
-
-                                <?php echo csrf_field(); ?>
-                                <a href="<?php echo e(route('client.destroy', $client->id)); ?>">
-                                <input type="hidden" name="_method" value="DELETE">
-                                <button type="button" class="btn btn-danger">Hapus</button>
-                                </a>
-                            </form>
-                            
-                        </div>
-                    </div>
-                    <?php $__env->stopSection(); ?>
                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                     </tbody>
                 </table>
@@ -106,7 +82,7 @@
                             <div class="position-relative form-group"><label for="exampleSelect" class="">Paket</label><select name="id_paket" id="id_paket" class="form-control" <?php echo e($errors->has('id_paket') ? 'is-invalid':''); ?>>
                                 <option value="">Pilih :</option>
                                 <?php $__currentLoopData = $pakets; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $paket): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                    <option value="<?php echo e($paket->id); ?>"><?php echo e(ucfirst($paket->nama)); ?></option>
+                                    <option value="<?php echo e($paket->id); ?>"><?php echo e(ucfirst($paket->nama)); ?> - Rp. <?php echo number_format($paket->harga,0,',','.'); ?></option>
                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                             </select></div>
                             <div class="row">
@@ -187,8 +163,11 @@
                 alert('You clicked in this marker');
             }
         });
+
     },
 });
+</script>
+<script>
     function getval(sel){
         var kecamatan = sel.value;
         $.ajax({
@@ -207,19 +186,9 @@
         });
         console.log(kecamatan);
     }
-$(document).ready(function(){
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-        
-    $(".datatable").DataTable({
-        "ordering":false
-    });
-
-});
+    
 </script>   
 <?php $__env->stopSection(); ?>
 
+<?php echo $__env->make('clients.modal', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 <?php echo $__env->make('layouts.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\proyek3\resources\views/clients/index.blade.php ENDPATH**/ ?>

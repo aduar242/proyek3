@@ -57,6 +57,7 @@
                         <th>Invoice</th>
                         <th>Tanggal Transaksi</th>
                         <th>Paket</th>
+                        <th>Harga Paket</th>
                         <th>Masa Aktif</th>
                         <th>Masa Kadaluwarsa</th>
                     </tr>
@@ -64,6 +65,7 @@
                     <tbody id="body-t">
                         @php
                         $no = 1;
+                        $tampunganHarga = 0;
                         @endphp
                         @foreach($laporan as $lap)
                         <tr>
@@ -72,9 +74,11 @@
                             @php
                                 $tanggal = new DateTime($lap->created_at);
                                 $tanggal = $tanggal->Format("d-m-Y");
+                                $tampunganHarga += $lap->paket->harga;
                             @endphp
                             <td>{{$tanggal}}</td>
                             <td>{{$lap->paket->nama}}</td>
+                            <td>@currency($lap->paket->harga)</td>
                             <td>{{$lap->masa_aktif}}</td>
                             <td>{{$lap->masa_kadaluwarsa}}</td>
                         </tr>
@@ -84,6 +88,7 @@
                         @endforeach
                     </tbody>
                 </table>
+            <h1>Total seluruh pemasukan : {{$tampunganHarga}}</h1>
                 </div>
             </div>
         </div>

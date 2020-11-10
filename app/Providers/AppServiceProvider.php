@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\Blade;
 use View;
 use App\Setting;
 
@@ -26,6 +27,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        Blade::directive('currency', function ( $expression ) { return "Rp. <?php echo number_format($expression,0,',','.'); ?>"; });
         if(Schema::hasTable('tabel_setting')){
             view()->share('app_name', $this->getSetting('app_name'));
             view()->share('latitude_centre', $this->getSetting('latitude_centre'));

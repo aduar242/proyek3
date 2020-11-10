@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Hclient;
-use App\paket;
+use App\Paket;
 use DB;
 use DateTime;
 use File;

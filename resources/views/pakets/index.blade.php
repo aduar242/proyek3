@@ -31,7 +31,7 @@
                     </div>
                     <div class="form-group">
                         <label for="name">Harga Paket</label>
-                        <input name="harga" placeholder="Contoh harga : 100000" type="number" class="uang form-control {{ $errors->has('harga') ? 'is-invalid':'' }}">
+                        <input name="harga" min="0" placeholder="Contoh harga : @currency("100000")" type="number" class="uang form-control {{ $errors->has('harga') ? 'is-invalid':'' }}">
                         {{-- <input name="harga" id="harga" placeholder="Contoh harga : 100000" type="string" class="uang form-control {{ $errors->has('harga') ? 'is-invalid':'' }}" onkeyup="convertToRupiah(this);"> --}}
                     </div>
                     <button class="mt-1 btn btn-primary">Simpan</button>
@@ -60,10 +60,10 @@
                             @foreach ($pakets as $paket)
                             <tr>
                                 <td>{{$no++}}</td>
-                                <td>{{$paket->nama}}</td>
-                                <td>{{$paket->harga}}</td>
+                                <td>{{$paket->nama}}</td>                                
+                                <td>@currency($paket->harga)</td>
                                 <td class="text-right">
-                                    <form action="{{ route('paket.destroy', $paket->id) }}" method="POST">
+                                    <form action="{{ route('paket.destroy', $paket->id) }}" method="GET">
                                         @csrf
                                         <input type="hidden" name="_method" value="DELETE">
                                         <a href="{{ route('paket.edit', $paket->id) }}" 
